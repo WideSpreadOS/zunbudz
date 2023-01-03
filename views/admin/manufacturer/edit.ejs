@@ -1,0 +1,66 @@
+<style>
+    .input-group-image-preview {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+    .input-group-image-preview p {
+        text-align: center;
+        padding: 10px;
+    }
+    .input-group-image-preview img {
+        width: 100%;
+    }
+
+
+
+@media screen and (orientation : landscape) {
+    #walkthrough {
+        display: none;
+    }
+}
+</style>
+
+<% if (user.admin===true) { %>
+
+
+<%- include('../../partials/menus/admin-nav.ejs'); %>
+
+<div class="page-title">
+    <h1><%= page %></h1>
+</div>
+
+<div class="go-back-button">
+    <a href="/admin/manufacturers"><i class="fas fa-arrow-left"></i> Back to All Companies</a>
+</div>
+
+<div class="input-form" id="shoeForm">
+    <div class="input-form-title">
+        <h5>Edit Company</h5>
+    </div>
+    <form action="/admin/manufacturer/<%= company.id %>/update?_method=PATCH" method="post">
+
+        <div class="input-group">
+            <input type="text" name="name" placeholder="Name of Company" value="<%= company.name %>">
+        </div>
+
+        <div class="input-group">
+            <input type="text" name="main_url" placeholder="Company Main URL" value="<%= company.main_url %>">
+        </div>
+
+        <div class="input-group">
+            <input type="text" name="logo" placeholder="Companys Logo URL" value="<%= company.logo %>">
+        </div>
+        <div class="input-group-image-preview">
+            <p>Logo Preview</p>
+            <img src="<%= company.logo %>" alt="">
+        </div>
+        <button type="submit">Update Company</button>
+    </form>
+</div>
+
+
+    
+<% } else { %>
+    <%- include('../../partials/pages/404.ejs'); %>
+    
+<% } %>

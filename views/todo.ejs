@@ -1,0 +1,182 @@
+<style>
+    .add-todo-form {
+        width: 90%;
+        margin: 0 auto;
+        border-radius: 16px;
+        padding-bottom: 15px;
+        margin-top: 20px;
+        text-align: center;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        color: lightskyblue;
+    }
+    .add-todo-form h5 {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 15px;
+        font-family: 'Rock Salt', cursive;
+    }
+    .todo-input {
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+    .todo-input input {
+        width: 100%;
+        padding: 5px;
+        border-radius: 8px;
+        outline: none;
+        border: none;
+        background-color: #ecf0f3;
+        box-shadow: -4px -4px 4px 0px #d1d9e6, 4px 4px 4px 0px #fff;
+    }
+    .add-todo-form button {
+        outline: none;
+        border: none;
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 15px;
+        padding: 10px;
+        font-family: 'Rock Salt', cursive;
+        border-radius: 16px;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        color: lightskyblue;
+    }
+    .todo-container {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+    .todo-container-header {
+        padding: 10px;
+        text-align: center;
+    }
+    .todo-container-header h3 {
+        color: lightskyblue;
+        font-family: 'Rock Salt', cursive;
+        font-size: 1.5rem;
+    }
+
+    .todo-list {
+    
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .to-do-item {
+        width: 100%;
+        padding: 8px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .todo-body {
+        width: 90%;
+    }
+    .feature-header {
+        font-weight: bold;
+    }
+    .feature-header h5 {
+        word-break: break-all;
+    }
+    .feature-header p {
+        color: lightskyblue;
+    }
+</style>
+
+<div class="page-title">
+    <h1><%= page %></h1>
+</div>
+
+<div class="go-back-button">
+    <a href="/todo/todo-list">To Do List</a>
+</div>
+<div class="add-todo-form">
+    <h5>Report A Bug</h5>
+    <form action="/todo/bug/add" method="post">
+        <div class="todo-input">
+            <input type="text" name="page_url" placeholder="URL of page with bug">
+        </div>
+        <div class="todo-input">
+            <input type="text" name="action_attempted" placeholder="Button or Link you clicked when you got an error">
+        </div>
+        <div class="todo-input">
+            <input type="text" name="description" placeholder="A description of what happened when the error occured">
+        </div>
+        <button type="submit">Add Bug Report</button>
+    </form>
+</div>
+
+<div class="add-todo-form">
+    <h5>Request A Feature</h5>
+    <form action="/todo/feature/add" method="post">
+        <div class="todo-input">
+            <input type="text" name="feature_name" placeholder="Name of the feature to add">
+        </div>
+        <div class="todo-input">
+            <input type="text" name="description" placeholder="A description of what you'd like this feature to do">
+        </div>
+        <button type="submit">Request Feature</button>
+    </form>
+</div>
+<div class="todo-container">
+    <div class="todo-container-header">
+        <h3>Features</h3>
+    </div>
+    <div class="todo-list">
+        <% features.forEach(function(feature) { %>
+            <div class="to-do-item">
+                <div class="todo-body">
+
+                    <div class="feature-header">
+                        <h5><%= feature.feature_name %></h5>
+                        
+                    </div>
+                    <div class="feature-description">
+                        <p><%= feature.description %></p>
+                    </div>
+                </div>
+                <div class="todo-completed">
+                    <% if (feature.done === true) { %>
+                        <span><i class="far fa-check-square"></i></span>
+                    <% } else { %>
+                        <span><i class="far fa-square"></i></span>
+                    <% } %>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<div class="todo-container">
+    <div class="todo-container-header">
+        <h3>Bugs</h3>
+    </div>
+    <div class="todo-list">
+        <% bugs.forEach(function(bug) { %>
+            <div class="to-do-item">
+                <div class="todo-body">
+
+                    <div class="feature-header">
+                        <h5><%= bug.page_url %></h5>
+                        <p><%= bug.action_attempted %></p>
+                    </div>
+                    <div class="feature-description">
+                        <p><%= bug.description %></p>
+                    </div>
+                </div>
+                <div class="todo-completed">
+                    <% if (bug.fixed === true) { %>
+                        <span><i class="far fa-check-square"></i></span>
+                    <% } else { %>
+                        <span><i class="far fa-square"></i></span>
+                    <% } %>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+

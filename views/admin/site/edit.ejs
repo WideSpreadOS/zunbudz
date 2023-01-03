@@ -1,0 +1,280 @@
+<style>
+    .input-form {
+        width: 90%;
+    }
+
+    .input-form textarea {
+        margin-bottom: 30px;
+    }
+
+    /*the container must be positioned relative:*/
+    .custom-select {
+        position: relative;
+        font-family: Arial;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .custom-select select {
+        display: none;
+        /*hide original SELECT element:*/
+    }
+
+    .select-selected {
+        background-color: #ecf0f3;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+        width: 70%;
+        margin: 0 auto;
+        border-radius: 8px;
+        font-family: 'Poiret One', cursive;
+    }
+
+    /*style the arrow inside the select element:*/
+    .select-selected:after {
+        position: absolute;
+        content: "";
+        top: 40%;
+        right: 15%;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-color: lightskyblue transparent transparent transparent;
+    }
+
+    /*point the arrow upwards when the select box is open (active):*/
+    .select-selected.select-arrow-active:after {
+        border-color: transparent transparent lightskyblue transparent;
+        top: 7px;
+    }
+
+    /*style the items (options), including the selected item:*/
+    .select-items div,
+    .select-selected {
+        padding: 8px 16px;
+        font-weight: lighter;
+        cursor: pointer;
+        user-select: none;
+    }
+
+
+    /*style items (options):*/
+    .select-items {
+        position: absolute;
+        background-color: #ecf0f3;
+        font-family: 'Poiret One', cursive;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+        top: 45px;
+        left: 5%;
+        right: 5%;
+        z-index: 99;
+        border-radius: 8px;
+        height: 200px;
+        max-height: 200px;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+
+    .select-items:first-of-type {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .select-items:last-of-type {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    /*hide the items when the select box is closed:*/
+    .select-hide {
+        display: none;
+    }
+
+    .same-as-selected {
+        background: lightskyblue;
+        border-radius: none;
+    }
+
+    .select-items div:hover,
+    .same-as-selected {
+        background: lightskyblue;
+        color: #fff;
+        border-radius: 0;
+    }
+
+    .contact-data-container {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .contact-data-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: start;
+        width: 100%;
+    }
+
+    .contact-item {
+        padding: 10px;
+        display: flex;
+        width: 90%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: start;
+    }
+
+    .contact-item i {
+        color: #555;
+        font-size: 1.5rem;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .contact-item a {
+        text-decoration: none;
+        color: lightskyblue;
+        font-size: 1.3rem;
+    }
+    .delete-button {
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 10px;
+    }
+    .delete-button a {
+        color: red;
+        font-size: 1.5rem;
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+        text-decoration: none;
+    }
+
+
+
+@media screen and (orientation : landscape) {
+    #walkthrough {
+        display: none;
+    }
+}
+</style>
+<% if (user.admin===true) { %>
+<%- include('../../partials/menus/admin-nav.ejs'); %>
+
+                                <div class="input-form">
+                                    <div class="input-form-title">
+                                        <h6>Update Contact</h6>
+                                    </div>
+                                    <form action="/admin/site/contact/<%= connection.id %>/update?_method=PATCH" method="post">
+                                        <div class="custom-select">
+                                            <select name="contact_type" id="contactType" required>
+                                                <option value="<%= connection.contact_type %>" selected disabled hidden><%= connection.contact_type %></option>
+                                                <option value="phone">Phone</option>
+                                                <option value="email">Email</option>
+                                                <option value="facebook">Facebook</option>
+                                                <option value="instagram">Instagram</option>
+                                                <option value="snapchat">Snapchat</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" name="contact_data" placeholder="Email Address, Number, or Link" value="<%= connection.contact_data %>">
+                                        </div>
+                                        <button type="submit">Update</button>
+                                    </form>
+ 
+                                </div>
+
+                                <div class="delete-button">
+                                    <a href="/admin/site/contact/<%= connection.id %>/delete">Delete</a>
+                                </div>
+                              
+            <script>
+                var x, i, j, l, ll, selElmnt, a, b, c;
+                /*look for any elements with the class "custom-select":*/
+                x = document.getElementsByClassName("custom-select");
+                l = x.length;
+                for (i = 0; i < l; i++) {
+                    selElmnt = x[i].getElementsByTagName("select")[0];
+                    ll = selElmnt.length;
+                    /*for each element, create a new DIV that will act as the selected item:*/
+                    a = document.createElement("DIV");
+                    a.setAttribute("class", "select-selected");
+                    a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+                    x[i].appendChild(a);
+                    /*for each element, create a new DIV that will contain the option list:*/
+                    b = document.createElement("DIV");
+                    b.setAttribute("class", "select-items select-hide");
+                    for (j = 1; j < ll; j++) {
+                        /*for each option in the original select element,
+                        create a new DIV that will act as an option item:*/
+                        c = document.createElement("DIV");
+                        c.innerHTML = selElmnt.options[j].innerHTML;
+                        c.addEventListener("click", function (e) {
+                            /*when an item is clicked, update the original select box,
+                            and the selected item:*/
+                            var y, i, k, s, h, sl, yl;
+                            s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                            sl = s.length;
+                            h = this.parentNode.previousSibling;
+                            for (i = 0; i < sl; i++) {
+                                if (s.options[i].innerHTML == this.innerHTML) {
+                                    s.selectedIndex = i;
+                                    h.innerHTML = this.innerHTML;
+                                    y = this.parentNode.getElementsByClassName("same-as-selected");
+                                    yl = y.length;
+                                    for (k = 0; k < yl; k++) {
+                                        y[k].removeAttribute("class");
+                                    }
+                                    this.setAttribute("class", "same-as-selected");
+                                    break;
+                                }
+                            }
+                            h.click();
+                        });
+                        b.appendChild(c);
+                    }
+                    x[i].appendChild(b);
+                    a.addEventListener("click", function (e) {
+                        /*when the select box is clicked, close any other select boxes,
+                        and open/close the current select box:*/
+                        e.stopPropagation();
+                        closeAllSelect(this);
+                        this.nextSibling.classList.toggle("select-hide");
+                        this.classList.toggle("select-arrow-active");
+                    });
+                }
+                function closeAllSelect(elmnt) {
+                    /*a function that will close all select boxes in the document,
+                    except the current select box:*/
+                    var x, y, i, xl, yl, arrNo = [];
+                    x = document.getElementsByClassName("select-items");
+                    y = document.getElementsByClassName("select-selected");
+                    xl = x.length;
+                    yl = y.length;
+                    for (i = 0; i < yl; i++) {
+                        if (elmnt == y[i]) {
+                            arrNo.push(i)
+                        } else {
+                            y[i].classList.remove("select-arrow-active");
+                        }
+                    }
+                    for (i = 0; i < xl; i++) {
+                        if (arrNo.indexOf(i)) {
+                            x[i].classList.add("select-hide");
+                        }
+                    }
+                }
+                /*if the user clicks anywhere outside the select box,
+                then close all select boxes:*/
+                document.addEventListener("click", closeAllSelect);
+            </script>
+
+
+
+    
+<% } else { %>
+    <%- include('../../partials/pages/404.ejs'); %>
+    
+<% } %>

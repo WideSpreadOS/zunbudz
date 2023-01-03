@@ -1,0 +1,414 @@
+<style>
+    .order-reciept-container {
+        position: relative;
+        border: solid 1px #000;
+        width: 8.5in;
+        margin: 0 auto;
+        height: 11in;
+        padding-bottom: 20px;
+    }
+
+    #orderReciept {
+        width: 100%;
+        height: 100%;
+        overflow: scroll;
+        margin-right: 20px;
+    }
+
+    .reciept-header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;
+        margin: 0 auto;
+        padding-top: 20px;
+        border-bottom: solid 2px lightskyblue;
+    }
+
+    .reciept-header-text {
+        width: 80%;
+        max-width: 80%;
+    }
+
+    .reciept-header-text h1 {
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    .reciept-header-text p {
+        text-align: center;
+    }
+
+    .reciept-header-logo {
+        width: 1in;
+    }
+
+    .reciept-header-logo img {
+        width: 100%;
+    }
+
+    .shipping-data {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin: 0 auto;
+        margin-top: 30px;
+        padding-bottom: 20px;
+        width: 80%;
+        border-bottom: solid 2px lightskyblue;
+    }
+
+    .order-placed-container {
+        width: 50%;
+        text-align: center;
+    }
+
+    .order-placed-container h5 {
+        font-size: 1.5rem;
+    }
+
+    .order-placed-container h5:last-of-type {
+        margin-top: 10px;
+    }
+
+    .shipping-address {
+        width: 35%;
+    }
+
+    .shipping-address h5 {
+        font-size: 1.5rem;
+    }
+
+    .address {
+        padding: 8px;
+    }
+
+    .items-container {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+
+    .items-container h3 {
+        text-align: center;
+        font-size: 2rem;
+        padding: 10px;
+
+    }
+
+    .item-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding-bottom: 5px;
+        border-bottom: solid 1px #555;
+        margin-bottom: 20px;
+    }
+
+    .item-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20%;
+        margin-top: 10px;
+    }
+
+    .item-image img {
+        width: 1in;
+        border-radius: 8px;
+        outline: solid 1px #555;
+
+    }
+
+    .item-data {
+        width: 80%;
+    }
+
+    .item-product {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .item-data-header {
+        padding: 5px;
+    }
+
+    .item-data-header h6 {
+        padding: 5px;
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+
+    .item-data-header p {
+        padding: 5px;
+    }
+
+    .item-data-body {
+        padding: 5px;
+    }
+
+    .item-data-body p {
+        padding: 5px;
+    }
+
+    .item-link {
+        padding: 5px;
+    }
+
+    .item-link p {
+        word-break: break-all;
+    }
+
+
+
+
+    .order-totals {
+        width: fit-content;
+        position: absolute;
+        right: 50px;
+        padding-top: 20px;
+        font-weight: bold;
+        text-align: right;
+    }
+
+    .order-totals h6 {
+        font-size: 1.5rem;
+    }
+
+    .order-calculations {}
+
+    .order-detail {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .order-totals h3 {
+        font-size: 2rem;
+    }
+
+
+
+
+    .print-label a {
+        text-decoration: none;
+        color: lightskyblue;
+    }
+
+    .order-placed {
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        box-shadow: -8px -4px 8px 0px #fff, 8px 4px 12px 0px #d1d9e6;
+        width: 90%;
+        border-radius: 16px;
+        padding: 10px;
+    }
+
+    .order-placed a {
+        font-size: 3rem;
+        color: lightskyblue;
+        text-decoration: none;
+        padding: 20px;
+    }
+
+    .print-button {
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        box-shadow: -8px -4px 8px 0px #fff, 8px 4px 12px 0px #d1d0e6;
+        width: 35%;
+        border-radius: 16px;
+        padding: 10px;
+        outline: none;
+        border: none;
+    }
+
+    .print-button button {
+        border-radius: 16px;
+        outline: none;
+        border: none;
+        width: 50%;
+        background: transparent;
+        color: lightskyblue;
+        font-size: 1.3rem;
+    }
+
+
+
+    @media screen and (orientation : landscape) {
+        #walkthrough {
+            display: none;
+        }
+    }
+</style>
+
+
+
+        <div class="admin-container">
+
+            <div class="page-title">
+                <h1>Print Reciept</h1>
+            </div>
+
+            <div class="go-back-button">
+                <a href="/cart/payment/success/<%= cart.id %>"><i class="fas fa-long-arrow-alt-left"></i> Back to last page</a>
+            </div>
+            <div id="orderReciept">
+                <div class="order-reciept-container">
+                    <div class="reciept-header">
+                        <div class="reciept-header-text">
+                            <h1>Reciept</h1>
+                            <p>Order ID: <%= cart.id %>
+                            </p>
+                        </div>
+                        <div class="reciept-header-logo">
+                            <img src="/images/logo_1a1a1c.png" alt="Kicks101 Logo">
+                        </div>
+                    </div>
+
+                    <div class="shipping-data">
+                        <div class="order-placed-container">
+                            <h5>Order Placed On</h5>
+                            <p>
+                                <%= cart.order_date.toDateString() %> - <%= cart.order_date.toLocaleTimeString() %>
+                            </p>
+
+                        </div>
+
+                        <div class="shipping-address">
+                            <h5>Ship To:</h5>
+                            <div class="address">
+                                <p>
+                                    <%= cart.unregistered_user.fname %>
+                                        <%= cart.unregistered_user.lname %>
+                                </p>
+                                <p>
+                                    <%= cart.unregistered_user.mailing_address.street %>
+                                </p>
+                                <% if (!cart.unregistered_user.mailing_address.building_number) { %>
+                                    <span style="display: none;"></span>
+                                    <% } else { %>
+                                        <p>Building Number: <%= cart.unregistered_user.mailing_address.building_number
+                                                %>
+                                        </p>
+                                        <% } %>
+                                            <% if (!cart.unregistered_user.mailing_address.apartment_number) { %>
+                                                <span style="display: none;"></span>
+                                                <% } else { %>
+                                                    <p>Apartment: <%=
+                                                            cart.unregistered_user.mailing_address.apartment_number %>
+                                                    </p>
+                                                    <% } %>
+                                                        <p>
+                                                            <%= cart.unregistered_user.mailing_address.city %>, <%=
+                                                                    cart.unregistered_user.mailing_address.state %>
+                                                        </p>
+                                                        <p>
+                                                            <%= cart.unregistered_user.mailing_address.zip %>
+                                                        </p>
+                            </div>
+                            <div class="special-instructions">
+                                <p>
+                                    <%= cart.unregistered_user.mailing_address.special_instructions %>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="items-container">
+                        <h3>Items:</h3>
+                        <% cart.items.forEach(function(item) { %>
+                            <div class="item-container">
+                                <div class="item-image">
+                                    <img src="<%= item.product.main_image %>" alt="">
+                                </div>
+                                <div class="item-data">
+                                    <div class="item-product">
+                                        <div class="item-data-header">
+                                            <h6>
+                                                <%= item.product.manufacturer.name %>
+                                            </h6>
+                                            <p>
+                                                <%= item.product.name %>
+                                            </p>
+                                            <p>Size: <%= item.chosen_size %>
+                                            </p>
+                                        </div>
+                                        <div class="item-data-body">
+                                            <p>Quantity: <%= item.quantity %>
+                                            </p>
+                                            <p>$<%= item.product.price.base %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="item-link">
+                                        <p>https://www.kicks101.store/products/<%= item.product.manufacturer.id %>/<%=
+                                                    item.product.id %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                    <div class="order-totals">
+                        <div class="order-calculations">
+                            <div class="order-detail">
+                                <h6>Total Items: </h6>
+                                <h6>
+                                    <%= cart.total_quantity %>
+                                </h6>
+                            </div>
+                            <% var tax=cart.total_price * 0.06 %>
+                                <div class="order-detail">
+                                    <h6>Price: </h6>
+                                    <h6>$<%= cart.total_price %>.00</h6>
+                                </div>
+                                <div class="order-detail">
+                                    <h6>Tax: </h6>
+                                    <h6>$<%= tax %>.00</h6>
+                                </div>
+                        </div>
+
+
+                        <% var total=tax + cart.total_price %>
+                            <h3 style="border-top: solid 2px #555; margin-top: 5px;">Total Price: <span
+                                    style="padding-left: 20px;">$<%= total %>.00</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="print-button">
+                <button onclick="printReciept('orderReciept')"><i class="fas fa-print"></i> Print Reciept</button>
+            </div>
+            <div class="order-placed">
+                <a href="/">Home</a>
+            </div>
+        </div>
+
+
+        <script>
+            function printReciept(el) {
+                let restorePage = document.body.innerHTML;
+                let printContent = document.getElementById(el).innerHTML
+                document.body.innerHTML = printContent
+                window.print()
+                document.body.innerHTML = restorePage
+            }
+        </script>
+
+

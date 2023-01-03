@@ -1,0 +1,45 @@
+<style>
+    .raffle-winner-container {
+        text-align: center;
+    }
+
+    .raffle-winner-container h5 {
+        margin-bottom: 30px;
+    }
+
+
+
+@media screen and (orientation : landscape) {
+    #walkthrough {
+        display: none;
+    }
+}
+</style>
+
+<% if (user.admin===true) { %>
+
+
+<%- include('../partials/menus/admin-nav.ejs'); %>
+    <div class="admin-container">
+<div class="raffle-winner-container">
+
+    <h5>Raffle Winner:</h5>
+    <p>
+        <% raffleTickets.forEach(function(ticket) { %>
+            <p><%= ticket.id %></p>
+        <% }) %> 
+    </p>
+</div>
+
+    </div>
+
+<script>
+    
+</script>
+
+
+    
+<% } else { %>
+    <%- include('../partials/pages/404.ejs'); %>
+    
+<% } %>

@@ -1,0 +1,189 @@
+<style>
+    .add-todo-form {
+        width: 90%;
+        margin: 0 auto;
+        border-radius: 16px;
+        padding-bottom: 15px;
+        margin-top: 20px;
+        text-align: center;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        color: lightskyblue;
+    }
+
+    .add-todo-form h5 {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 15px;
+        font-family: 'Rock Salt', cursive;
+    }
+
+    .todo-input {
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+
+    .todo-input input {
+        width: 100%;
+        padding: 5px;
+        border-radius: 8px;
+        outline: none;
+        border: none;
+        background-color: #ecf0f3;
+        box-shadow: -4px -4px 4px 0px #d1d9e6, 4px 4px 4px 0px #fff;
+    }
+
+    .add-todo-form button {
+        outline: none;
+        border: none;
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 15px;
+        padding: 10px;
+        font-family: 'Rock Salt', cursive;
+        border-radius: 16px;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        color: lightskyblue;
+    }
+
+    .todo-container {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+
+    .todo-container-header {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .todo-container-header h3 {
+        color: lightskyblue;
+        font-family: 'Rock Salt', cursive;
+        font-size: 1.5rem;
+    }
+
+    .todo-list {
+
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .to-do-item {
+        width: 100%;
+        padding: 8px;
+        padding-bottom: 15px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: solid 1px #555;
+    }
+
+    .todo-body {
+        width: 90%;
+    }
+
+    .feature-header {
+        font-weight: bold;
+    }
+    .feature-header h5 {
+        font-size: 1.2rem;
+
+    }
+
+    .feature-header p {
+        color: lightskyblue;
+    }
+</style>
+
+<div class="page-title">
+    <h1>
+        <%= page %>
+    </h1>
+</div>
+
+<div class="add-todo-form">
+    <h5>Add A To Do</h5>
+    <form action="/todo/todo-list/add" method="post">
+        <div class="todo-input">
+            <input type="text" name="name" placeholder="To do name">
+        </div>
+        <div class="todo-input">
+            <input type="text" name="for_route" placeholder="Route for to do">
+        </div>
+        <div class="todo-input">
+            <input type="text" name="description" placeholder="A description of the to do">
+        </div>
+        <div class="todo-input">
+            <select name="type" id="">
+                <option value="" disabled hidden selected>Type</option>
+                <option value="Front End">Front End</option>
+                <option value="Backend">Backend</option>
+                <option value="Database">Database</option>
+                <option value="Logic">Logic</option>
+                <option value="Instructional">Instructional</option>
+            </select>
+        </div>
+        <div class="todo-input">
+            <select name="importance" id="">
+                <option value="" disabled hidden selected>Importance</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<div class="todo-container">
+    <div class="todo-container-header">
+        <h3>To Do's</h3>
+    </div>
+    <div class="todo-list">
+        <% todos.forEach(function(todo) { %>
+            <div class="to-do-item">
+                <div class="todo-body">
+
+                    <div class="feature-header">
+                        <h5>
+                            <%= todo.name %>
+                        </h5>
+                        <p style="color: #000">
+                            For Route: 
+                            <span style="color: lightskyblue;">
+
+                                <%= todo.for_route %>
+                            </span>
+                        </p>
+                        <p style="color: #000; padding-top: 5px; padding-bottom: 5px;">
+                            Importance: <span style="color: red">
+
+                                <%= todo.importance %>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="feature-description">
+                        <p>
+                            <%= todo.description %>
+                        </p>
+                    </div>
+                </div>
+                <div class="todo-completed">
+                    <% if (todo.done===true) { %>
+                        <span><i class="far fa-check-square"></i></span>
+                        <% } else { %>
+                            <span><i class="far fa-square"></i></span>
+                            <% } %>
+                </div>
+            </div>
+            <% }) %>
+    </div>
+</div>

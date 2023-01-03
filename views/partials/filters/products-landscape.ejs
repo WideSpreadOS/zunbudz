@@ -1,0 +1,412 @@
+<style>
+
+
+    .filter-container {
+        width: 95%;
+        margin: 0 auto;
+        display: none;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-top: -15px;
+        height: auto;
+    }
+    .filter-left {
+        background: #eee;
+        color: #333;
+        position:relative;
+        overflow:hidden;
+        width: 40%;
+        margin-left: 5%;
+        margin-bottom: 30px;
+        border-radius: 16px;
+        padding: 4px;
+        }
+    .filter-right {
+        background: #eee;
+        color: #333;
+        position:relative;
+        overflow:hidden;
+        width: 40%;
+        margin-right: 5%;
+        margin-bottom: 30px;
+        border-radius: 16px;
+        padding: 4px;
+        }
+        .filter-text{
+            box-shadow: 4px 4px 6px #d1d9e6, -4px -4px 6px #ffffff;
+        padding:8px 20px 8px;
+        background: #ecf0f3;
+        border-radius: 16px;
+        height: 145px;
+        z-index: 30;
+        height: auto;
+        min-height: 150px;
+
+        }
+        .arc-top-left {
+        position: absolute;
+        width: 50px;
+        height: 100%;
+        top: 0; right: 0;
+        }
+        .arc-top-left::after {
+        content:'';
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: #ecf0f3;
+        box-shadow: -4px -4px 6px #d1d9e6, 4px 4px 6px #ffffff;
+        border-radius: 50%; 
+        }
+
+        .arc-top-left:after {
+        top: -50px;
+        right: -50px;
+        }
+.arc-top-right:before {
+  content:'';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #ecf0f3;
+  box-shadow: -4px -4px 6px #d1d9e6, 4px 4px 6px #ffffff;
+  border-radius: 50%;
+}
+.arc-top-right:before {
+  top: -50px;
+  left: -50px;
+}
+
+    .color-filter {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .color-filter i {
+        text-align: center;
+        color: lightskyblue;
+        width: 100%;
+        font-size: 1.5rem;
+    }
+
+    .a_palette_color {
+        width: 30px;
+        height: 30px;
+    }
+
+    .input-group-color-selection {
+        margin-bottom: 20px;
+
+    }
+
+    .selected-color-container {
+        position: relative;
+    }
+
+    .toast-copied-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 16px;
+        margin: 0 auto;
+        padding: 12px;
+        margin-bottom: 10px;
+        text-align: center;
+        background-color: #ecf0f3;
+        box-shadow: inset 4px 4px 6px #cbced1, inset -4px -4px 6px #ffffff, 0 0 10px #fff;
+    }
+
+    .toast-copied {
+        border-radius: 16px;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff, inset 0 0 15px #fff;
+        width: 70%;
+        margin: 0 auto;
+        padding: 10px;
+        height: 70px;
+        margin-bottom: 20px;
+        text-align: center;
+        text-shadow: 0 0 2px #fff;
+
+    }
+
+    .toast-copied input {
+        display: none;
+    }
+
+    .palette {
+        width: 90%;
+        height: 30px;
+        max-width: 90%;
+        background-color: #ecf0f3;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px;
+        border-radius: 16px;
+        margin: 0 auto;
+        overflow-x: scroll;
+        overflow-y: hidden;
+
+        box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
+            -7px -7px 20px rgba(255, 255, 255, 1),
+            inset 0px 0px 4px rgba(255, 255, 255, 0.2),
+            inset 7px 7px 15px rgba(55, 84, 170, 0),
+            inset -7px -7px 20px rgba(255, 255, 255, 0),
+            0px 0px 4px rgba(255, 255, 255, 0) !important;
+    }
+
+    .a_palette_color {
+        width: 20px;
+        height: 20px;
+        background: red;
+        display: inline-block;
+        margin: 14px;
+        border-radius: 5%;
+        box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
+            -7px -7px 20px rgba(255, 255, 255, 1),
+            inset 0px 0px 4px rgba(255, 255, 255, 0.2),
+            inset 7px 7px 15px rgba(55, 84, 170, 0),
+            inset -7px -7px 20px rgba(255, 255, 255, 0),
+            0px 0px 4px rgba(255, 255, 255, 0) !important;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+
+    .color-link:nth-child(20n + 1)>a>.a_palette_color {
+        background-color: #FFFAFA;
+    }
+
+    .color-link:nth-child(20n + 2)>a>.a_palette_color {
+        background-color: #D3D3D3;
+    }
+
+    .color-link:nth-child(20n + 3)>a>.a_palette_color {
+        background-color: #696969;
+    }
+
+    .color-link:nth-child(20n + 4)>a>.a_palette_color {
+        background-color: #000000;
+    }
+
+    .color-link:nth-child(20n + 5)>a>.a_palette_color {
+        background-color: #000080;
+    }
+
+    .color-link:nth-child(20n + 6)>a>.a_palette_color {
+        background-color: #87CEFA;
+    }
+
+    .color-link:nth-child(20n + 7)>a>.a_palette_color {
+        background-color: #DDA0DD;
+    }
+
+    .color-link:nth-child(20n + 8)>a>.a_palette_color {
+        background-color: #9400D3;
+    }
+
+    .color-link:nth-child(20n + 9)>a>.a_palette_color {
+        background-color: #FF1493;
+    }
+
+    .color-link:nth-child(20n + 10)>a>.a_palette_color {
+        background-color: #FFB6C1;
+    }
+
+    .color-link:nth-child(20n + 11)>a>.a_palette_color {
+        background-color: #DC143C;
+    }
+
+    .color-link:nth-child(20n + 12)>a>.a_palette_color {
+        background-color: #FF4500;
+    }
+
+    .color-link:nth-child(20n + 13)>a>.a_palette_color {
+        background-color: #FFA500;
+    }
+
+    .color-link:nth-child(20n + 14)>a>.a_palette_color {
+        background-color: #FFA07A;
+    }
+
+    .color-link:nth-child(20n + 15)>a>.a_palette_color {
+        background-color: #FFFF00;
+    }
+
+    .color-link:nth-child(20n + 16)>a>.a_palette_color {
+        background-color: #2d3436;
+        background-color: #D2691E;
+    }
+
+    .color-link:nth-child(20n + 17)>a>.a_palette_color {
+        background-color: #8B4513;
+    }
+
+    .color-link:nth-child(20n + 18)>a>.a_palette_color {
+        background-color: #FFD700;
+    }
+
+    .color-link:nth-child(20n + 19)>a>.a_palette_color {
+        background-color: #6B8E23;
+    }
+
+    .color-link:nth-child(20n + 20)>a>.a_palette_color {
+        background-color: #98FB98;
+    }
+
+</style>
+
+<div class="filter-container-landscape">
+
+    <div class="filter-left">
+        <div class="arc-top-left">
+            
+        </div>
+        <div class="filter-text">
+                <div class="filter-options-header">
+                    <h6>Filter By Type or Color</h6>
+                </div>
+                <div class="filter-options">
+                    <div class="filter-option"><a href="/products/type/Sneaker">Sneakers</a></div>
+                    <div class="filter-option"><a href="/products/type/Outerwear">Outerwear</a></div>
+                    <div class="filter-option"><a href="/products/type/T-Shirt">T-Shirts</a></div>
+                    <div class="filter-option"><a href="/products/type/Accessory">Accessories</a></div>
+                </div>
+
+                        <div class="color-filter">
+                            <div class="palette">
+                                <div class="color-link">
+                                    <a href="/products/color/fffafa">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/d3d3d3">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/696969">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/000000">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/000080">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/87cefa">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/ddA0dd">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/9400d3">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/ff1493">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/ffb6c1">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/dc143c">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/ff4500">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/ffa500">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/ffa07a">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/ffff00">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/d2691e">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/884513">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/ffD700">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/6B8e23">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                                <div class="color-link">
+                                    <a href="/products/color/98fb98">
+                                        <div class="a_palette_color"></div>
+                                    </a>
+                                </div>
+                        
+                            </div>
+                        </div>
+
+        </div>
+
+        <div class="arc-bottom-left"></div>
+    </div>
+
+    <div class="filter-right">
+        <div class="arc-top-right"></div>
+        <div class="filter-text">
+                <div class="filter-options-header">
+                    <h6>Filter By Brand</h6>
+                </div>
+                <div class="filter-options">
+                    <% companies.forEach(function(manufacturer) { %>
+                        <div class="filter-option"><a href="/products/manufacturer/<%= manufacturer.id %>">
+                                <%= manufacturer.name %>
+                            </a></div>
+                        <% }) %>
+                </div>
+        </div>
+        <div class="arc-bottom-right"></div>
+    </div>
+
+</div>
+

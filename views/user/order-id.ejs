@@ -1,0 +1,218 @@
+<style>
+
+    .order-data {
+        width: 90%;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        border-radius: 16px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .order-status {
+        margin-top: 10px;
+        width: 90%;
+    }
+    .order-status-header {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .order-status-header h5 {
+        font-size: 1.5rem;
+    }
+    .shipping-header {
+        margin-top: 10px;
+        color: lightskyblue;
+    }
+    .mailing-address {
+        margin-left: 15px;
+        padding: 5px;
+    }
+
+    .order-items-list {
+        width: 90%;
+        margin-top: 20px;
+    }
+    .order-items-header {
+        border-bottom: solid 1px lightskyblue;
+        padding-bottom: 8px;
+        margin-bottom: 20px;
+    }
+    .order-items-header h6 {
+        font-size: 1.5rem;
+        color: lightskyblue;
+        text-align: center;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        margin-bottom: 20px;
+        border-bottom: solid 1px #ccc;
+        padding-bottom: 10px;
+    }
+    .item:last-of-type {
+        padding-bottom: 20px;
+        border-bottom: solid 1px lightskyblue;
+    }
+    .item-photo {
+        width: 20%;
+        max-width: 20%;
+    }
+    .item-photo img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .item-data {
+        width: 50%;
+        padding: 5px;
+    }
+
+
+    .company-logo-mini {
+        width: 25px;
+        margin: 0 auto;
+    }
+    .company-logo-mini img {
+        width: 100%;
+        filter: drop-shadow(0 0 3px lightskyblue);
+    }
+
+
+    .purchase-data {
+        width: 30%;
+        text-align: right;
+    }
+    .total-order-price {
+        width: 90%;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .total-with-tax {
+        border-top: solid 1px #555;
+        width: fit-content;
+        text-align: right;
+        padding-top: 8px;
+        margin-top: 4px;
+    }
+
+@media screen and (orientation : landscape) {
+    .item-data {
+        width: 50%;
+        padding-left: 15px;
+    }
+
+
+}
+
+@media screen and (min-width: 900px) {
+    .item-data {
+        width: 50%;
+        padding-left: 30px;
+        font-size: 1.2rem;
+    }
+    .purchase-data {
+        font-size: 1.2rem;
+
+    }
+    .company-logo-mini {
+        width: 50px;
+        margin: 0 auto;
+    }
+    .company-logo-mini img {
+        width: 100%;
+    }
+
+}
+</style>
+
+
+
+<div class="page-title">
+    <h1><%= page %></h1>
+    <h2 style="font-size: 1.3rem; font-weight: bold;"><%= order.id %></h2>
+</div>
+<div class="go-back-button">
+    <a href="/user/dashboard"><i class="fas fa-long-arrow-alt-left"></i> Back to Dashboard</a>
+</div>
+<div class="order-data">
+
+    <div class="order-status">
+        <% if (order.shipped === true) { %>
+            <div class="order-status-header">
+                <h5 style="color: green;">Order Status</h5>
+            </div>
+            <p style="color: lightskyblue;">Order Shipped On:</p>
+            <p style="margin-left: 15px; padding: 5px;"><%= order.shipped_date.toDateString() %></p>
+            <p class="shipping-header">Shipped To:</p>
+        <% } else { %>
+            <div class="order-status-header">
+                <h5 style="color: red">Order Status</h5>
+            </div>
+            <p style="text-align: center;">Order Hasn't Been Shipped Yet.</p>
+            <p class="shipping-header">Will Be Shipped To:</p>
+        <% } %>
+        <div class="mailing-address">
+            <p><%= order.unregistered_user.fname %> <%= order.unregistered_user.lname %></p>
+            <p><%= order.unregistered_user.mailing_address.street %></p>
+            <p><%= order.unregistered_user.mailing_address.city %>, <%= order.unregistered_user.mailing_address.state %></p>
+            <p><%= order.unregistered_user.mailing_address.zip %></p>
+        </div>
+    </div>
+    <div class="order-items-list">
+        <div class="order-items-header">
+            <h6>Items</h6>
+        </div>
+
+        <div class="order-items-list-container">
+            <% order.items.forEach(function(item) { %>
+                <div class="item">
+                    <div class="item-photo">
+                        <a href="/products/manufacturer/<%= item.product.manufacturer.id %>/product/<%= item.product.id %>">
+                            <img src="<%= item.product.main_image %>" alt="">
+                        </a>
+                    </div>
+                    <div class="item-data">
+
+                        <div class="company-logo-mini">
+                            <img src="<%= item.product.manufacturer.logo %>" alt="">
+                        </div>
+                        <p><%= item.product.manufacturer.name %></p>
+                        <p><%= item.product.name %></p>
+                        <p>Product Type: <%= item.product.product_type %></p>
+                        <p>Price: $<%= item.product.price.base %></p>
+                        
+                    </div>
+                    <% var itemPrice = item.product.price.base %>
+                    <% var itemQty = item.quantity %>
+                    <% var totalItemPrice = itemPrice * itemQty %>
+                    <div class="purchase-data">
+                        <p>Quantity: <%= item.quantity %></p>
+                        <p>Size: <%= item.chosen_size %></p>
+                        <p>Total Price: $<%= totalItemPrice %></p>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <div class="total-order-price">
+        <% var tax = order.total_price * 0.06 %>
+        <% var totalWithTax = order.total_price + tax %>
+        <p>Total: $<%= order.total_price %>.00</p>
+        <p>Tax: $<%= tax %>.00</p>
+        <p class="total-with-tax">Total With Tax: $<%= totalWithTax %>.00</p>
+    </div>
+</div>

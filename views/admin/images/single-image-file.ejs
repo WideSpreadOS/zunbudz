@@ -1,0 +1,18 @@
+<style>
+
+</style>
+
+<% if (user.admin===true) { %>
+
+
+<p><%= image %></p>
+    <div class="full-size-image">
+        <img src="/image/<%= file.filename %>" alt="<%= file.filename %>">
+    </div>
+
+
+    
+<% } else { %>
+    <%- include('../../partials/pages/404.ejs'); %>
+    
+<% } %>

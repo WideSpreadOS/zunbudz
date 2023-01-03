@@ -1,0 +1,700 @@
+<style>
+    body {
+        display: flex;
+    }
+    .label-to-print {
+        width: 4in;
+        height: 2in;
+        margin: 0 auto;
+        position: relative;
+    }
+    .company-logo {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        height: 1in;
+        width: 1in;
+        z-index: 20;
+        max-width: 1in;
+        max-height: 1in;
+    }
+    .company-logo img {
+        width: 1in;
+        height: 1in;
+        max-height: 1in;
+        max-width: 1in;
+    }
+    .return-address {
+        padding: 10px;
+    }
+    .shipping-address {
+        text-align: center;
+    }
+    .shipping-address p {
+        font-size: 1.1rem;    
+    }
+    .print-button {
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        box-shadow: -8px -4px 8px 0px #fff, 8px 4px 12px 0px #d1d0e6;
+        width: 35%;
+        border-radius: 16px;
+        padding: 10px;
+        outline: none;
+        border: none;
+    }
+    .print-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        max-width: 100vw;
+    }
+    .print-buttons-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+    }
+    .print-button button {
+        border-radius: 16px;
+        outline: none;
+        border: none;
+        width: 50%;
+        background: transparent;
+        color: lightskyblue;
+        font-size: 1.3rem;
+    }
+    
+    .printer-overflow {
+        max-width: 100vw;
+        overflow-x: scroll;
+    }
+
+
+
+@media screen and (orientation : landscape) {
+    #walkthrough {
+        display: none;
+    }
+}
+</style>
+
+<% if (user.admin===true) { %>
+
+<div class="page-title">
+    <h1>Print Shipping Label</h1>
+</div>
+
+
+<div class="go-back-button">
+    <a href="/admin/invoices/new/order/<%= order.id %>"><i class="fas fa-arrow-left"></i> Back to the Order</a>
+</div>
+
+
+<div class="printer-overflow">
+
+<div class="shipping-label-page-layout">
+
+    <div class="page-label">
+        <div id="shippingLabel_1_1">
+            <div class="label-to-print11">
+                <div class="label-to-print">
+
+                    <div class="company-logo">
+                        <img src="/images/logo_1a1a1c.png" alt="">
+                    </div>
+                    <div class="return-address">
+                        <p>Kicks101</p>
+                        <p>Street</p>
+                        <p>Hartford, CT</p>
+                        <p>Zip</p>
+                    </div>
+
+                    <div class="shipping-address">
+
+                        <p>
+                            <%= order.unregistered_user.fname %>
+                                <%= order.unregistered_user.lname %>
+                        </p>
+                        <p>
+                            <%= order.unregistered_user.mailing_address.street %>
+                        </p>
+                        <% if (!order.unregistered_user.mailing_address.building_number) { %>
+                            <span style="display: none;"></span>
+                            <% } else { %>
+                                <p>Building Number: <%= order.unregistered_user.mailing_address.building_number %>
+                                </p>
+                                <% } %>
+                                    <% if (!order.unregistered_user.mailing_address.apartment_number) { %>
+                                        <span style="display: none;"></span>
+                                        <% } else { %>
+                                            <p>Apartment: <%= order.unregistered_user.mailing_address.apartment_number %>
+                                            </p>
+                                            <% } %>
+
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.city %>, <%=
+                                                            order.unregistered_user.mailing_address.state %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.zip %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.special_instructions %>
+                                                </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-label">
+        <div id="shippingLabel_1_2">
+            <div class="label-to-print12">
+                <div class="label-to-print">
+                    <div class="company-logo">
+                        <img src="/images/logo_1a1a1c.png" alt="">
+                    </div>
+                    <div class="return-address">
+                        <p>Kicks101</p>
+                        <p>Street</p>
+                        <p>Hartford, CT</p>
+                        <p>Zip</p>
+                    </div>
+
+                    <div class="shipping-address">
+
+                        <p>
+                            <%= order.unregistered_user.fname %>
+                                <%= order.unregistered_user.lname %>
+                        </p>
+                        <p>
+                            <%= order.unregistered_user.mailing_address.street %>
+                        </p>
+                        <% if (!order.unregistered_user.mailing_address.building_number) { %>
+                            <span style="display: none;"></span>
+                            <% } else { %>
+                                <p>Building Number: <%= order.unregistered_user.mailing_address.building_number %>
+                                </p>
+                                <% } %>
+                                    <% if (!order.unregistered_user.mailing_address.apartment_number) { %>
+                                        <span style="display: none;"></span>
+                                        <% } else { %>
+                                            <p>Apartment: <%= order.unregistered_user.mailing_address.apartment_number %>
+                                            </p>
+                                            <% } %>
+
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.city %>, <%=
+                                                            order.unregistered_user.mailing_address.state %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.zip %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.special_instructions %>
+                                                </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-label">
+        <div id="shippingLabel_2_1">
+            <div class="label-to-print21">
+            <div class="label-to-print">
+            
+            <div class="company-logo">
+                <img src="/images/logo_1a1a1c.png" alt="">
+            </div>
+            <div class="return-address">
+                <p>Kicks101</p>
+                <p>Street</p>
+                <p>Hartford, CT</p>
+                <p>Zip</p>
+            </div>
+
+            <div class="shipping-address">
+
+                <p>
+                    <%= order.unregistered_user.fname %>
+                        <%= order.unregistered_user.lname %>
+                </p>
+                <p>
+                    <%= order.unregistered_user.mailing_address.street %>
+                </p>
+                <% if (!order.unregistered_user.mailing_address.building_number) { %>
+                    <span style="display: none;"></span>
+                    <% } else { %>
+                        <p>Building Number: <%= order.unregistered_user.mailing_address.building_number %>
+                        </p>
+                        <% } %>
+                            <% if (!order.unregistered_user.mailing_address.apartment_number) { %>
+                                <span style="display: none;"></span>
+                                <% } else { %>
+                                    <p>Apartment: <%= order.unregistered_user.mailing_address.apartment_number %>
+                                    </p>
+                                    <% } %>
+
+                                        <p>
+                                            <%= order.unregistered_user.mailing_address.city %>, <%=
+                                                    order.unregistered_user.mailing_address.state %>
+                                        </p>
+                                        <p>
+                                            <%= order.unregistered_user.mailing_address.zip %>
+                                        </p>
+                                        <p>
+                                            <%= order.unregistered_user.mailing_address.special_instructions %>
+                                        </p>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-label">
+        <div id="shippingLabel_2_2">
+            <div class="label-to-print22">
+            <div class="label-to-print">
+            <div class="company-logo">
+                <img src="/images/logo_1a1a1c.png" alt="">
+            </div>
+            <div class="return-address">
+                <p>Kicks101</p>
+                <p>Street</p>
+                <p>Hartford, CT</p>
+                <p>Zip</p>
+            </div>
+
+            <div class="shipping-address">
+
+                <p>
+                    <%= order.unregistered_user.fname %>
+                        <%= order.unregistered_user.lname %>
+                </p>
+                <p>
+                    <%= order.unregistered_user.mailing_address.street %>
+                </p>
+                <% if (!order.unregistered_user.mailing_address.building_number) { %>
+                    <span style="display: none;"></span>
+                    <% } else { %>
+                        <p>Building Number: <%= order.unregistered_user.mailing_address.building_number %>
+                        </p>
+                        <% } %>
+                            <% if (!order.unregistered_user.mailing_address.apartment_number) { %>
+                                <span style="display: none;"></span>
+                                <% } else { %>
+                                    <p>Apartment: <%= order.unregistered_user.mailing_address.apartment_number %>
+                                    </p>
+                                    <% } %>
+
+                                        <p>
+                                            <%= order.unregistered_user.mailing_address.city %>, <%=
+                                                    order.unregistered_user.mailing_address.state %>
+                                        </p>
+                                        <p>
+                                            <%= order.unregistered_user.mailing_address.zip %>
+                                        </p>
+                                        <p>
+                                            <%= order.unregistered_user.mailing_address.special_instructions %>
+                                        </p>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-label">
+        <div id="shippingLabel_3_1">
+            <div class="label-to-print31">
+                <div class="label-to-print">
+
+                    <div class="company-logo">
+                        <img src="/images/logo_1a1a1c.png" alt="">
+                    </div>
+                    <div class="return-address">
+                        <p>Kicks101</p>
+                        <p>Street</p>
+                        <p>Hartford, CT</p>
+                        <p>Zip</p>
+                    </div>
+
+                    <div class="shipping-address">
+
+                        <p>
+                            <%= order.unregistered_user.fname %>
+                                <%= order.unregistered_user.lname %>
+                        </p>
+                        <p>
+                            <%= order.unregistered_user.mailing_address.street %>
+                        </p>
+                        <% if (!order.unregistered_user.mailing_address.building_number) { %>
+                            <span style="display: none;"></span>
+                            <% } else { %>
+                                <p>Building Number: <%= order.unregistered_user.mailing_address.building_number %>
+                                </p>
+                                <% } %>
+                                    <% if (!order.unregistered_user.mailing_address.apartment_number) { %>
+                                        <span style="display: none;"></span>
+                                        <% } else { %>
+                                            <p>Apartment: <%= order.unregistered_user.mailing_address.apartment_number %>
+                                            </p>
+                                            <% } %>
+
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.city %>, <%=
+                                                            order.unregistered_user.mailing_address.state %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.zip %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.special_instructions %>
+                                                </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-label">
+        <div id="shippingLabel_3_2">
+            <div class="label-to-print32">
+                <div class="label-to-print">
+                    <div class="company-logo">
+                        <img src="/images/logo_1a1a1c.png" alt="">
+                    </div>
+                    <div class="return-address">
+                        <p>Kicks101</p>
+                        <p>Street</p>
+                        <p>Hartford, CT</p>
+                        <p>Zip</p>
+                    </div>
+
+                    <div class="shipping-address">
+
+                        <p>
+                            <%= order.unregistered_user.fname %>
+                                <%= order.unregistered_user.lname %>
+                        </p>
+                        <p>
+                            <%= order.unregistered_user.mailing_address.street %>
+                        </p>
+                        <% if (!order.unregistered_user.mailing_address.building_number) { %>
+                            <span style="display: none;"></span>
+                            <% } else { %>
+                                <p>Building Number: <%= order.unregistered_user.mailing_address.building_number %>
+                                </p>
+                                <% } %>
+                                    <% if (!order.unregistered_user.mailing_address.apartment_number) { %>
+                                        <span style="display: none;"></span>
+                                        <% } else { %>
+                                            <p>Apartment: <%= order.unregistered_user.mailing_address.apartment_number %>
+                                            </p>
+                                            <% } %>
+
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.city %>, <%=
+                                                            order.unregistered_user.mailing_address.state %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.zip %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.special_instructions %>
+                                                </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-label">
+        <div id="shippingLabel_4_1">
+            <div class="label-to-print41">
+                <div class="label-to-print">
+
+                    <div class="company-logo">
+                        <img src="/images/logo_1a1a1c.png" alt="">
+                    </div>
+                    <div class="return-address">
+                        <p>Kicks101</p>
+                        <p>Street</p>
+                        <p>Hartford, CT</p>
+                        <p>Zip</p>
+                    </div>
+
+                    <div class="shipping-address">
+
+                        <p>
+                            <%= order.unregistered_user.fname %>
+                                <%= order.unregistered_user.lname %>
+                        </p>
+                        <p>
+                            <%= order.unregistered_user.mailing_address.street %>
+                        </p>
+                        <% if (!order.unregistered_user.mailing_address.building_number) { %>
+                            <span style="display: none;"></span>
+                            <% } else { %>
+                                <p>Building Number: <%= order.unregistered_user.mailing_address.building_number %>
+                                </p>
+                                <% } %>
+                                    <% if (!order.unregistered_user.mailing_address.apartment_number) { %>
+                                        <span style="display: none;"></span>
+                                        <% } else { %>
+                                            <p>Apartment: <%= order.unregistered_user.mailing_address.apartment_number %>
+                                            </p>
+                                            <% } %>
+
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.city %>, <%=
+                                                            order.unregistered_user.mailing_address.state %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.zip %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.special_instructions %>
+                                                </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-label">
+        <div id="shippingLabel_4_2">
+            <div class="label-to-print42">
+                <div class="label-to-print">
+                    <div class="company-logo">
+                        <img src="/images/logo_1a1a1c.png" alt="">
+                    </div>
+                    <div class="return-address">
+                        <p>Kicks101</p>
+                        <p>Street</p>
+                        <p>Hartford, CT</p>
+                        <p>Zip</p>
+                    </div>
+
+                    <div class="shipping-address">
+
+                        <p>
+                            <%= order.unregistered_user.fname %>
+                                <%= order.unregistered_user.lname %>
+                        </p>
+                        <p>
+                            <%= order.unregistered_user.mailing_address.street %>
+                        </p>
+                        <% if (!order.unregistered_user.mailing_address.building_number) { %>
+                            <span style="display: none;"></span>
+                            <% } else { %>
+                                <p>Building Number: <%= order.unregistered_user.mailing_address.building_number %>
+                                </p>
+                                <% } %>
+                                    <% if (!order.unregistered_user.mailing_address.apartment_number) { %>
+                                        <span style="display: none;"></span>
+                                        <% } else { %>
+                                            <p>Apartment: <%= order.unregistered_user.mailing_address.apartment_number %>
+                                            </p>
+                                            <% } %>
+
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.city %>, <%=
+                                                            order.unregistered_user.mailing_address.state %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.zip %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.special_instructions %>
+                                                </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-label">
+        <div id="shippingLabel_5_1">
+            <div class="label-to-print51">
+                <div class="label-to-print">
+
+                    <div class="company-logo">
+                        <img src="/images/logo_1a1a1c.png" alt="">
+                    </div>
+                    <div class="return-address">
+                        <p>Kicks101</p>
+                        <p>Street</p>
+                        <p>Hartford, CT</p>
+                        <p>Zip</p>
+                    </div>
+
+                    <div class="shipping-address">
+
+                        <p>
+                            <%= order.unregistered_user.fname %>
+                                <%= order.unregistered_user.lname %>
+                        </p>
+                        <p>
+                            <%= order.unregistered_user.mailing_address.street %>
+                        </p>
+                        <% if (!order.unregistered_user.mailing_address.building_number) { %>
+                            <span style="display: none;"></span>
+                            <% } else { %>
+                                <p>Building Number: <%= order.unregistered_user.mailing_address.building_number %>
+                                </p>
+                                <% } %>
+                                    <% if (!order.unregistered_user.mailing_address.apartment_number) { %>
+                                        <span style="display: none;"></span>
+                                        <% } else { %>
+                                            <p>Apartment: <%= order.unregistered_user.mailing_address.apartment_number %>
+                                            </p>
+                                            <% } %>
+
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.city %>, <%=
+                                                            order.unregistered_user.mailing_address.state %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.zip %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.special_instructions %>
+                                                </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-label">
+        <div id="shippingLabel_5_2">
+            <div class="label-to-print52">
+                <div class="label-to-print">
+                    <div class="company-logo">
+                        <img src="/images/logo_1a1a1c.png" alt="">
+                    </div>
+                    <div class="return-address">
+                        <p>Kicks101</p>
+                        <p>Street</p>
+                        <p>Hartford, CT</p>
+                        <p>Zip</p>
+                    </div>
+
+                    <div class="shipping-address">
+
+                        <p>
+                            <%= order.unregistered_user.fname %>
+                                <%= order.unregistered_user.lname %>
+                        </p>
+                        <p>
+                            <%= order.unregistered_user.mailing_address.street %>
+                        </p>
+                        <% if (!order.unregistered_user.mailing_address.building_number) { %>
+                            <span style="display: none;"></span>
+                            <% } else { %>
+                                <p>Building Number: <%= order.unregistered_user.mailing_address.building_number %>
+                                </p>
+                                <% } %>
+                                    <% if (!order.unregistered_user.mailing_address.apartment_number) { %>
+                                        <span style="display: none;"></span>
+                                        <% } else { %>
+                                            <p>Apartment: <%= order.unregistered_user.mailing_address.apartment_number %>
+                                            </p>
+                                            <% } %>
+
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.city %>, <%=
+                                                            order.unregistered_user.mailing_address.state %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.zip %>
+                                                </p>
+                                                <p>
+                                                    <%= order.unregistered_user.mailing_address.special_instructions %>
+                                                </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<div class="print-buttons">
+    <div class="print-buttons-row">
+        <div class="print-button">
+            <button onclick="printLabel('shippingLabel_1_1')"><i class="fas fa-print"></i> Print 1-1</button>
+        </div>
+        <div class="print-button">
+            <button onclick="printLabel('shippingLabel_1_2')"><i class="fas fa-print"></i> Print 1-2</button>
+        </div>
+    </div>
+    <div class="print-buttons-row">
+        <div class="print-button">
+            <button onclick="printLabel('shippingLabel_2_1')"><i class="fas fa-print"></i> Print 2-1</button>
+        </div>
+        <div class="print-button">
+            <button onclick="printLabel('shippingLabel_2_2')"><i class="fas fa-print"></i> Print 2-2</button>
+        </div>
+    </div>
+    <div class="print-buttons-row">
+        <div class="print-button">
+            <button onclick="printLabel('shippingLabel_3_1')"><i class="fas fa-print"></i> Print 3-1</button>
+        </div>
+        <div class="print-button">
+            <button onclick="printLabel('shippingLabel_3_2')"><i class="fas fa-print"></i> Print 3-2</button>
+        </div>
+    </div>
+    <div class="print-buttons-row">
+        <div class="print-button">
+            <button onclick="printLabel('shippingLabel_4_1')"><i class="fas fa-print"></i> Print 4-1</button>
+        </div>
+        <div class="print-button">
+            <button onclick="printLabel('shippingLabel_4_2')"><i class="fas fa-print"></i> Print 4-2</button>
+        </div>
+    </div>
+    <div class="print-buttons-row">
+        <div class="print-button">
+            <button onclick="printLabel('shippingLabel_5_1')"><i class="fas fa-print"></i> Print 5-1</button>
+        </div>
+        <div class="print-button">
+            <button onclick="printLabel('shippingLabel_5_2')"><i class="fas fa-print"></i> Print 5-2</button>
+        </div>
+    </div>
+
+
+</div>
+<script>
+    const label = document.getElementById('shippingLabel')
+    function printLabel(el) {
+        let restorePage = document.body.innerHTML;
+        let printContent = document.getElementById(el).innerHTML
+        document.body.innerHTML = printContent
+        window.print()
+        document.body.innerHTML = restorePage
+    }
+
+</script>
+
+
+
+    
+<% } else { %>
+    <%- include('../../partials/pages/404.ejs'); %>
+    
+<% } %>

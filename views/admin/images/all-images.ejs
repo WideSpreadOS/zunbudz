@@ -1,0 +1,38 @@
+<style>
+
+</style>
+
+<% if (user.admin===true) { %>
+
+
+<%- include('../../partials/menus/admin-nav.ejs'); %>
+
+<div class="admin-container">
+<div class="page-title">
+    <h1><%= page %></h1>
+</div>
+
+
+<div class="images-container">
+    <% productImages.forEach(function(product) { %>
+        <p><%= product.id %></p>
+    <% }) %>
+</div>
+<div class="images-container">
+    <% allImages.forEach(function(image) { %>
+        <img src="/image/<%= image.img.data %>" alt="">
+        <p><%= image.img.data %></p>
+    <% }) %>
+</div>
+
+
+
+
+</div>
+
+
+    
+<% } else { %>
+    <%- include('../../partials/pages/404.ejs'); %>
+    
+<% } %>

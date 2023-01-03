@@ -1,0 +1,88 @@
+<style>
+    .order-container {
+                text-align: center;
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        box-shadow: -8px -4px 8px 0px #fff, 8px 4px 12px 0px #d1d0e6;
+        width: 90%;
+        border-radius: 16px;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .go-to-order {
+        padding: 10px;
+    }
+    .go-to-order a {
+        color: lightskyblue;
+        text-decoration: none;
+    }
+
+
+
+@media screen and (orientation : landscape) {
+    #walkthrough {
+        display: none;
+    }
+}
+</style>
+<% if (user.admin===true) { %>
+
+
+<%- include('../../partials/menus/admin-nav.ejs'); %>
+<div class="admin-container">
+    <div id="walkthrough">
+        <h3>Page Tutorial</h3>
+    </div>
+    <div class="go-back-button">
+        <a href="/admin/invoices"><i class="fas fa-long-arrow-alt-left"></i> Back to Invoice Home</a>
+    </div>
+    <div class="page-title">
+        <h1>New Orders</h1>
+    </div>
+    <div data-title="New Orders List" data-intro="These are all orders that haven't been shipped yet." class="card-demo">
+        <div class="all-orders-container">
+
+            <% if (allOrders.length <= 0) { %>
+                <p style="text-align: center;">No New Orders</p>
+            <% } else { %>
+                <% allOrders.forEach(function(order) { %>
+                    <div class="order-container">
+                        <div class="order-data">
+                            <p><%= order.order_date.toDateString() %></p>
+                            <p><%= order.unregistered_user.fname %> <%= order.unregistered_user.lname %></p>
+                        </div>
+                        <div class="order-info">
+                            <p>Total Price: $<%= order.total_price %></p>
+                            <p>Total Items: <%= order.total_quantity %></p>
+                        </div>
+                        <div data-title="Open Order" data-intro="Click 'Open' to see order details." class="openButton">
+                            <div class="go-to-order"><a href="/admin/invoices/new/order/<%= order.id %>">Open</a></div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %>
+
+        </div>
+    </div>
+    </div>
+
+
+<script>
+
+    document.getElementById('walkthrough').addEventListener("click", walkthrough);
+    function walkthrough() {
+        introJs().start()
+    }
+</script>
+
+
+    
+<% } else { %>
+    <%- include('../../partials/pages/404.ejs'); %>
+    
+<% } %>

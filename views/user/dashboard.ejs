@@ -1,0 +1,149 @@
+<style>
+
+    .user-details-container {
+        width: 80%;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        border-radius: 16px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .user-details-container h5 {
+        padding: 12px;
+        margin-bottom: 5px;
+        font-family: 'Rock Salt', cursive;
+        color: lightskyblue;
+        font-size: 1.2rem;
+    }
+    .user-details-link {
+        width: 80%;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 6px #d1d9e6, -4px -4px 6px #ffffff;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 10px;
+    }
+    .user-details-link a {
+        padding: 10px;
+        color: lightskyblue;
+        text-decoration: none;
+    }
+    .user-order-history {
+        width: 90%;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        border-radius: 16px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .user-order-history h5 {
+        padding: 12px;
+        margin-bottom: 5px;
+        font-family: 'Rock Salt', cursive;
+        color: lightskyblue;
+        font-size: 1.2rem;
+    }
+
+    .order-list {
+        width: 80%;
+    }
+    .order-item {
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        padding: 5px;
+    }
+    .order-item a {
+        text-decoration: none;
+        color: #333;
+    }
+    .order-date {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+    .order-data {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+@media screen and (orientation : landscape) {
+
+    .user-details-container {
+        width: 30%;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        border-radius: 16px;
+        margin: 0 20px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+</style>
+
+<div class="page-title">
+    <h1>
+        <%= page %>
+    </h1>
+</div>
+
+
+
+<div class="page-container">
+
+    <div class="user-details-container">
+        <h5>Your Settings</h5>
+        <div class="user-details-link">
+            <a href="/user/mailing">Mailing Addresses</a>
+        </div>
+        <div class="user-details-link">
+            <a href="#">Payment Methods</a>
+        </div>
+    </div>
+
+    <div class="user-details-container">
+        <h5>Raffle</h5>
+        <div class="user-details-link">
+            <a href="/raffle">Raffle Dashboard</a>
+        </div>
+    </div>
+
+    <div class="user-order-history">
+        <h5>Your Order History</h5>
+        <div class="order-list">
+            <% orders.forEach(function(order) { %>
+                <div class="order-item">
+                    <a href="/user/order-history/<%= order.id %>">
+                        <div class="order-date">
+                            <p>Date: <%= order.order_date.toDateString() %></p>
+                        </div>
+                        <div class="order-data">
+                            <div class="order-data-quantity">
+                                <p>Quantity: <%= order.total_quantity %></p>
+                            </div>
+                            <div class="order-data-price">
+                                <p>Total Price: $<%= order.total_price %></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>

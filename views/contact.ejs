@@ -1,0 +1,89 @@
+<style>
+    .contact-data-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: start;
+        width: 100%;
+    }
+    .contact-item {
+        padding: 10px;
+        display: flex;
+        width: 90%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: start;
+    }
+    .contact-item i {
+        color: #555;
+        font-size: 1.5rem;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .contact-item a {
+        text-decoration: none;
+        color: lightskyblue;
+        font-size: 1.3rem;
+    }
+</style>
+
+<div class="page-title">
+    <h1>Contact Us</h1>
+</div>
+
+<div class="site-logo-big">
+    <img src="/images/logo_1a1a1c.png" alt="">
+</div>
+
+
+<div class="contact-data-container">
+
+
+    <% if (!siteData) { %>
+        <span style="text-align: center; width: 100%;">No Contact Data Yet</span>
+        <% } else { %>
+            <% siteData.forEach(function(connection) { %>
+                <% if (connection.contact_type==='phone' ) { %>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <p><a href="tel:<%= connection.contact_data %>">
+                                <%= connection.contact_data %>
+                            </a></p>
+                    </div>
+                    <% } %>
+                        <% if (connection.contact_type==='email' ) { %>
+                            <div class="contact-item">
+                                <i class="far fa-envelope"></i>
+                                <p><a href="mailto:<%= connection.contact_data %>">
+                                        <%= connection.contact_data %>
+                                    </a></p>
+                            </div>
+                            <% } %>
+                                <% if (connection.contact_type==='facebook' ) { %>
+                                    <div class="contact-item">
+                                        <i class="fab fa-facebook"></i>
+                                        <p><a href="<%= connection.contact_data %>">
+                                                <%= connection.contact_data %>
+                                            </a></p>
+                                    </div>
+                                    <% } %>
+                                        <% if (connection.contact_type==='instagram' ) { %>
+                                            <div class="contact-item">
+                                                <i class="fab fa-instagram"></i>
+                                                <p><a href="<%= connection.contact_data %>">
+                                                        <%= connection.contact_data %>
+                                                    </a></p>
+                                            </div>
+                                            <% } %>
+                                                <% if (connection.contact_type==='snapchat' ) { %>
+                                                    <div class="contact-item">
+                                                        <i class="fab fa-snapchat-ghost"></i>
+                                                        <p><a href="<%= connection.contact_data %>">
+                                                                <%= connection.contact_data %>
+                                                            </a></p>
+                                                    </div>
+                                                    <% } %>
+
+                                                        <% }) %>
+                                                            <% } %>
+</div>

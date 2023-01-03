@@ -1,0 +1,84 @@
+<style>
+    .raffle-winner-container {
+        text-align: center;
+    }
+    .raffle-winner-container h5 {
+        margin-bottom: 30px;
+        font-size: 1.5rem;
+        color: lightskyblue;
+        font-family: 'Rock Salt', cursive;
+    }
+    .raffle-winner-container h6 {
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+    .raffle-tickets-container {
+        margin-top: 30px;
+    }
+    .raffle-winner-container p {
+        padding: 10px;
+    }
+    .raffle-winner-container a {
+        color: lightskyblue;
+        text-decoration: none;
+        font-size: 1.1rem;
+        margin-top: 8px;
+    }
+    .raffle-ticket {
+        width: 90%;
+        padding: 10px;
+        text-align: center;
+            background: #ecf0f3;
+    box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+    border-radius: 16px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    }
+    .raffle-ticket img {
+        width: 150px;
+        border-radius: 16px;
+    }
+
+
+
+@media screen and (orientation : landscape) {
+    #walkthrough {
+        display: none;
+    }
+}
+</style>
+
+<% if (user.admin===true) { %>
+
+
+<%- include('../partials/menus/admin-nav.ejs'); %>
+    <div class="admin-container">
+<div class="go-back-button">
+    <a href="/admin/raffle"><i class="fas fa-long-arrow-alt-left"></i> Back to Raffle</a>
+</div>
+
+
+<div class="raffle-winner-container">
+
+    <h5>Raffle Winner</h5>
+    <h6><%= winner.fname %> <%= winner.lname %></h6>
+    <p>User ID: <%= winner.id %></p>
+    <p><a href="mailto:<%= winner.email %>"><%= winner.email %></a></p>
+
+    <div class="raffle-tickets-container">
+        <div class="raffle-ticket">
+            <h5>Raffle Prize</h5>
+                <p><%= raffleWinners.raffle_product.manufacturer.name %></p>
+                <p><%= raffleWinners.raffle_product.name %></p>
+                <img style="border-radius: 16px;" src="<%= raffleWinners.raffle_product.main_image %>" alt="">
+                
+            </div>
+    </div>
+</div>
+
+    </div>
+
+<% } else { %>
+    <%- include('../partials/pages/404.ejs'); %>
+    
+<% } %>

@@ -1,0 +1,50 @@
+<style>
+    .error {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .error h1 {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: lightskyblue;
+    }
+
+    .error-data {
+        padding: 10px;
+    }
+    .error-data p {
+        margin-bottom: 15px;
+        padding: 20px;
+    }
+    .error-data-links {
+        text-align: center;
+        margin-top: 30px;
+    }
+    .error-data-links p {
+        margin-bottom: 15px;
+    }
+    .error-data-links a {
+        text-decoration: none;
+        color: lightskyblue;
+        
+    }
+</style>
+<div class="filter-portrait">
+    <%- include('./partials/filters/products.ejs'); %>
+</div>
+<div class="filter-landscape">
+    <%- include('./partials/filters/products-landscape.ejs'); %>
+</div>
+
+<div class="error">
+    <h1>Error 404 - Page Not Found</h1>
+</div>
+
+<div class="error-data">
+    <p>Sorry, we can't seem to find the page you're looking for. Please check the URL or try again. Use the "Back Button" in the browser, or choose an option below:</p>
+</div>
+<div class="error-data-links">
+    <p><a href="/products">Go Back to All Products</a></p>
+    <p><a href="/">Go Back to The Home Page</a></p>
+</div>

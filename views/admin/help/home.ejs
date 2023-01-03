@@ -1,0 +1,17 @@
+<style>
+
+</style>
+<% if (user.admin===true) { %>
+
+<%- include('../../partials/menus/admin-nav.ejs'); %>
+
+<div class="page-title">
+    <h1>Admin Help</h1>
+</div>
+
+
+    
+<% } else { %>
+    <%- include('../../partials/pages/404.ejs'); %>
+    
+<% } %>

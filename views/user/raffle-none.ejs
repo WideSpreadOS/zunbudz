@@ -1,0 +1,141 @@
+<style>
+    .text-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+        .unclaimed-raffles-header {
+        font-size: 1.5rem;    
+        color: lightskyblue;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .unclaimed-won-raffles {
+        margin-top: 30px;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .raffle-item {
+        background: #ecf0f3;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+
+
+
+    .id-data {
+        text-align: center;
+        border-bottom: solid 1px lightskyblue;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .id-data h5 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 8px;
+    }
+    .item-data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 10px;
+    }
+    .item-data h6 {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .item-data p {
+        padding: 8px;
+    }
+    .item-data a {
+        color: lightskyblue;
+        text-decoration: none;
+    }
+    .item-data img {
+        max-width: 90%;
+        max-height: 300px;
+        margin-bottom: 15px;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        border-radius: 16px;
+    }
+    .raffle-item-claim {
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        border-radius: 8px;
+    }
+    .raffle-item-claim a {
+        color: lightskyblue;
+        text-decoration: none;
+        font-family: 'Rock Salt', cursive;
+        font-size: 1.2rem;
+    }
+    @media screen and (orientation : landscape) {
+        .text-container {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 0;
+            padding: 15px;
+            color: lightskyblue;
+            font-size: 1.3rem;
+            text-shadow: 0 0 2px #000;
+            font-weight: bold;
+            border-radius: 16px;
+            width: fit-content;
+        }
+    }
+</style>
+
+
+<div class="go-back-button">
+    <a href="/user/dashboard"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+</div>
+<% if (winningTickets.length <= 0) { %>
+    <div class="text-container">
+        <h4>Sorry, no Raffle at the moment.</h4>
+        <h4>Please Come Back Soon!</h4>
+    </div>
+
+        <div class="site-logo-big">
+            <img src="/images/logo_1a1a1c.png" alt="">
+        </div>
+
+<% } else { %>
+    <div class="unclaimed-raffles-header">
+        <h3>You Won!</h3>
+        <% if (winningTickets.length > 1) { %>
+            <h3>Collect Your Prizes!</h3>
+        <% } else { %>
+            <h3>Collect Your Prize!</h3>
+        <% } %>
+    </div>
+    <div class="unclaimed-won-raffles">
+        <% winningTickets.forEach(function(raffle) { %>
+            <div class="raffle-item">
+                <div class="id-data">
+                    <h5>Raffle</h5>
+                    <p>Date: <%= raffle.date_started.toDateString() %></p>
+                    <p>Raffle ID: <%= raffle.id %></p>
+                    <p>Your Ticket ID: <%= raffle.winning_ticket %></p>
+                </div>
+                <div class="item-data">
+                    <h6>Prize</h6>
+                    <p><%= raffle.raffle_product.manufacturer.name %></p>
+                    <p><%= raffle.raffle_product.name %></p>
+                    <p>Worth: $<span style='color:red;text-decoration:line-through'><span style="color: #000"><%= raffle.raffle_product.price.base %></span></span> <span style="font-family: 'Rock Salt', cursive; color: lightskyblue;">FREE!</span></p>
+                    <img src="<%= raffle.raffle_product.main_image %>" alt="">
+                </div>
+                <div class="raffle-item-claim">
+                    <a href="/user/raffle/claim/<%= raffle.id %>">Claim Prize</a>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+<% } %>

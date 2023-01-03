@@ -1,0 +1,188 @@
+<style>
+    .raffle-winner-container {
+        text-align: center;
+    }
+    .raffle-winner-container h5 {
+        font-size: 2rem;
+    }
+    .raffle-winner-container button {
+        font-size: 2rem;
+        color: lightskyblue;
+        outline: none;
+        border: none;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        border-radius: 8px;
+        width: 80%;
+        font-family: 'Rock Salt', cursive;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .raffle-winner-container h5 {
+        margin-bottom: 30px;
+    }
+
+    .raffle-tickets-container {
+        margin-top: 30px;
+    }
+
+    .raffle-ticket {
+        width: 90%;
+        padding: 10px;
+        text-align: center;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        border-radius: 16px;
+        margin: 0 auto;
+        margin-bottom: 15px;
+    }
+    .raffle-ticket h3 {
+        padding: 15px;
+        font-size: 1.5rem;
+        color: lightskyblue;
+    }
+    .raffle-prize-body h4 {
+        font-size: 1.4rem;
+        font-weight: bold;
+
+    }
+    .raffle-prize-body p {
+        margin-bottom: 15px;
+        text-align: left;
+        padding: 8px;
+
+    }
+    .raffle-prize-body-logo img {
+        filter: drop-shadow(0 0 5px lightskyblue);
+    }
+    .raffle-prize-body h5 {
+        font-size: 1.3rem;
+
+    }
+    .raffle-ticket img {
+        width: 150px;
+    }
+    .raffle-prize-body {
+        box-shadow: 4px 4px 4px 0px #d1d9e6 inset, -4px -4px 4px 0px #fff inset;
+        border-radius: 16px;
+        padding: 10px;
+        margin-bottom: 30px;
+    }
+    .item-card-sizes {
+        box-shadow: 4px 4px 4px 0px #d1d9e6 inset, -4px -4px 4px 0px #fff inset;
+        border-radius: 16px;
+        padding: 10px;
+        position: relative;
+    }
+    .item-size {
+        text-align: center;
+    }
+    .state {
+
+        position: absolute;
+        opacity: 1e-5;
+        
+        top: 0;
+        right: 0;
+        pointer-events: none;
+    }
+
+    .text {
+        transition: ease-in-out .5s;
+        text-align: center;
+        
+    }
+    .indicator {
+        position: relative;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        height: 30px;
+        width: 30px;
+        box-shadow: -8px -4px 8px 0px #fff, 8px 4px 12px 0px #d1d0e6;
+        overflow: hidden;
+    }
+    .indicator::before, .indicator::after {
+        content: '';
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        height: 80%;
+        width: 80%;
+        border-radius: 50%;
+    }
+    .indicator::before {
+        box-shadow: -4px -2px 4px 0px #d1d9e6, 4px 2px 8px 0px #fff;
+    }
+    .indicator::after {
+        background: #ecf0f3;
+        box-shadow: -4px -2px 4px 0px #fff, 4px 2px 8px 0px #d1d0e6;
+        transform: scale3d(1, 1, 1);
+        transition: opacity .25s ease-in-out, transform .25s ease-in-out;
+    }
+    .state:checked ~ .label .indicator::after {
+        transform: scale3d(.975, .975, 1) translate3d(0, 10%, 0);
+        opacity: 0;
+    } 
+    .state:focus ~ .label .text {
+        text-shadow: 0 0 3px #d1d0e6;
+        font-weight: bold;
+        transition: ease-in-out .5s;
+    }
+</style>
+
+<div class="raffle-winner-container">
+
+    <h5>Congratulations <%= winner.fname %>!!!</h5>
+
+    <div class="raffle-tickets-container">
+        <div class="raffle-ticket">
+            <h3>You Won The Following:</h3>
+            <div class="raffle-prize-body">
+                <h4><%= raffleWinner.raffle_product.manufacturer.name %></h4>
+                <div class="raffle-prize-body-logo">
+                    <img src="<%= raffleWinner.raffle_product.manufacturer.logo %>" alt="">
+                </div>
+                <h5><%= raffleWinner.raffle_product.name %></h5>
+                <h6 style="margin-bottom: 30px; font-size: 2rem;">$<%= raffleWinner.raffle_product.price.base %></h6>
+                <img style="border-radius: 16px;" src="<%= raffleWinner.raffle_product.main_image %>" alt="">
+                <p><%= raffleWinner.raffle_product.description %></p>
+            </div>
+        <% if (raffleWinner.raffle_product.available_sizes.length===0) { %>
+            <span style="display: none;"></span>
+            <% } else { %>
+                <div class="available-sizes-header">
+                    <h5>Available Sizes</h5>
+                </div>
+                <div class="item-card-sizes">
+                    <% raffleWinner.raffle_product.available_sizes.forEach(function(size) { %>
+                        <% if (size=='' ) { %>
+                            <span style="display: none;"></span>
+                            <% } else { %>
+                <form action="/cart/raffle/claim/<%= raffleWinner.id %>/<%= raffleWinner.raffle_product.id %>" method="POST">
+
+                                <div class="item-size" style="display: flex; flex-direction: row;">
+                                    <input class="state" type="radio" name="chosen_size" id="<%= size %>" value="<%= size %>">
+                                    <label class="label" for="<%= size %>">
+                                        <div class="indicator"></div>
+                                        <span class="text">
+                                            <%= size %>
+                                        </span>
+                                    </label>
+                                </div>
+                                <% } %>
+                                    <% }) %>
+                </div>
+                <% } %>
+
+                    <input type="hidden" name="" value="<%= raffleWinner.raffle_product.id %>">
+                    <input type="hidden" name="" value="<%= raffleWinner.raffle_product.manufacturer.name %>">
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="" value="<%= raffleWinner.raffle_product.name %>">
+                    <input type="hidden" name="price" value="0">
+                    <button type="submit">Claim Prize</button>
+                </form>
+
+
+        </div>
+    </div>
+</div>

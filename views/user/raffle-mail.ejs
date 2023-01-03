@@ -1,0 +1,411 @@
+<style>
+
+    .current-addresses-container {
+        width: 80%;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        border-radius: 16px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        padding-top: 20px;
+    }
+    .address-container {
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        border-radius: 16px;
+    }
+    .address {
+        padding: 8px;
+    }
+    .address p {
+
+    }
+    .special-instructions-container {
+        padding: 8px;
+    }
+    .special-instructions-container h6 {
+        font-family: 'Rock Salt', cursive;
+        font-size: 1rem;
+        color: lightskyblue;
+    }
+    .special-instructions-container p {
+        width: 80%; 
+        margin: 0 auto;
+    }
+
+    .input-form {
+        width: 80%;
+    }
+    .user-details-container {
+        width: 80%;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+        border-radius: 8px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user-details-container h5 {
+        padding: 12px;
+        margin-bottom: 5px;
+        font-family: 'Rock Salt', cursive;
+        color: lightskyblue;
+        font-size: 1.2rem;
+    }
+
+    .user-details-link {
+        width: 80%;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .user-details-link a {
+        padding: 10px;
+        color: lightskyblue;
+        text-decoration: none;
+    }
+
+    
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: #ecf0f3;
+  box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 8px;
+  font-family: 'Poiret One', cursive;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 40%;
+  right: 15%;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: lightskyblue transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent lightskyblue transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  padding: 8px 16px;
+  font-weight: lighter;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+/*style items (options):*/
+.select-items {
+    position: absolute;
+    background-color: #ecf0f3;
+    font-family: 'Poiret One', cursive;
+  box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+  top: 45px;
+  left: 5%;
+  right: 5%;
+  z-index: 99;
+  border-radius: 8px;
+      height: 200px;
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.select-items:first-of-type {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.select-items:last-of-type {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.same-as-selected {
+  background: lightskyblue;
+  border-radius: none;
+}
+.select-items div:hover, .same-as-selected {
+    background: lightskyblue;
+    color: #fff;
+    border-radius: 0;
+}
+.use-address-action {
+    width: 100%;
+    text-align: center;
+}
+.use-address-action button {
+    width: 90%;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    border: none;
+    background-color: #ecf0f3;
+    font-family: 'Rock Salt', cursive;
+    color: lightskyblue;
+    box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+}
+</style>
+
+
+<% if (userAddresses === 0) { %>
+    <span>No saved addresses</span>
+<% } else { %>
+<div class="addresses-container">
+    <% userAddresses.forEach(function(address) {  %>
+<div class="address-container">
+    <div class="address">
+        <p>
+            <%= user.fname %>
+                <%= user.lname %>
+        </p>
+        <p>
+            <%= address.street %>
+        </p>
+        <% if (address.building_number=='' ) { %>
+            <span style="display: none;"></span>
+            <% } else { %>
+                <p>Building: <%= address.building_number %>
+                </p>
+                <% } %>
+                    <% if (address.apartment_number=='' ) { %>
+                        <span style="display: none;"></span>
+                        <% } else { %>
+                            <p>Apartment: <%= address.apartment_number %>
+                            </p>
+                            <% } %>
+                                <p>
+                                    <%= address.city %>, <%= address.state %>
+                                </p>
+                                <p>
+                                    <%= address.zip %>
+                                </p>
+    </div>
+    <div class="special-instructions-container">
+        <h6>Special Instructions:</h6>
+        <% if (address.special_instructions=='' ) { %>
+            <p>No Instructions</p>
+            <% } else { %>
+                <p>
+                    <%= address.special_instructions %>
+                </p>
+                <% } %>
+    </div>
+
+    <div class="use-address-action">
+        <form action="/cart/raffle/claim/<%= raffleWinnerId %>/<%= orderId %>/add-address" method="post">
+            <input type="hidden" name="address_owner" value="<%= user.fname %> <%= user.lname %>">
+            <input type="hidden" name="street" value="<%= address.street %>">
+            <input type="hidden" name="building_number" value="<%= address.building_number %>">
+            <input type="hidden" name="apartment_number" value="<%= address.apartment_number %>">
+            <input type="hidden" name="city" value="<%= address.city %>">
+            <input type="hidden" name="state" value="<%= address.state %>">
+            <input type="hidden" name="country" value="<%= address.country %>">
+            <input type="hidden" name="zip" value="<%= address.zip %>">
+            <input type="hidden" name="special_instructions" value="<%= address.special_instructions %>">
+            <button type="submit">Use This Address</button>
+        </form>
+    </div>
+</div>
+    <% }) %>
+</div>
+
+<% } %>
+
+<div class="input-form">
+    <div class="input-form-title">
+        <h6>Add Mailing Address</h6>
+    </div>
+    <form action="/cart/raffle/claim/<%= raffleWinnerId %>/<%= orderId %>/add-address" method="post">
+        <input type="hidden" name="address_owner" value="<%= user.id %>">
+        <div class="input-group"><input type="text" name="street" placeholder="House Number and Street"></div>
+        <div class="input-group"><input type="text" name="building_number"
+                placeholder="Building Number (If applicable)"></div>
+        <div class="input-group"><input type="text" name="apartment_number"
+                placeholder="Apartment Number (If applicable)"></div>
+        <div class="input-group"><input type="text" name="city" placeholder="City"></div>
+        <div class="custom-select">
+            <select name="state" id="state">
+                <option value="" selected disabled hidden>State</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+            </select>
+
+        </div>
+        <div class="input-group"><input type="text" name="country" placeholder="Country"></div>
+        <div class="input-group"><input type="number" name="zip" placeholder="Zip"></div>
+        <div class="input-group"><textarea name="special_instructions" id=""
+                placeholder="Special Delivery Instructions"></textarea></div>
+        <button type="submit">Add Address</button>
+    </form>
+</div>
+
+
+
+<script>
+    var x, i, j, l, ll, selElmnt, a, b, c;
+    /*look for any elements with the class "custom-select":*/
+    x = document.getElementsByClassName("custom-select");
+    l = x.length;
+    for (i = 0; i < l; i++) {
+        selElmnt = x[i].getElementsByTagName("select")[0];
+        ll = selElmnt.length;
+        /*for each element, create a new DIV that will act as the selected item:*/
+        a = document.createElement("DIV");
+        a.setAttribute("class", "select-selected");
+        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+        x[i].appendChild(a);
+        /*for each element, create a new DIV that will contain the option list:*/
+        b = document.createElement("DIV");
+        b.setAttribute("class", "select-items select-hide");
+        for (j = 1; j < ll; j++) {
+            /*for each option in the original select element,
+            create a new DIV that will act as an option item:*/
+            c = document.createElement("DIV");
+            c.innerHTML = selElmnt.options[j].innerHTML;
+            c.addEventListener("click", function (e) {
+                /*when an item is clicked, update the original select box,
+                and the selected item:*/
+                var y, i, k, s, h, sl, yl;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                sl = s.length;
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < sl; i++) {
+                    if (s.options[i].innerHTML == this.innerHTML) {
+                        s.selectedIndex = i;
+                        h.innerHTML = this.innerHTML;
+                        y = this.parentNode.getElementsByClassName("same-as-selected");
+                        yl = y.length;
+                        for (k = 0; k < yl; k++) {
+                            y[k].removeAttribute("class");
+                        }
+                        this.setAttribute("class", "same-as-selected");
+                        break;
+                    }
+                }
+                h.click();
+            });
+            b.appendChild(c);
+        }
+        x[i].appendChild(b);
+        a.addEventListener("click", function (e) {
+            /*when the select box is clicked, close any other select boxes,
+            and open/close the current select box:*/
+            e.stopPropagation();
+            closeAllSelect(this);
+            this.nextSibling.classList.toggle("select-hide");
+            this.classList.toggle("select-arrow-active");
+        });
+    }
+    function closeAllSelect(elmnt) {
+        /*a function that will close all select boxes in the document,
+        except the current select box:*/
+        var x, y, i, xl, yl, arrNo = [];
+        x = document.getElementsByClassName("select-items");
+        y = document.getElementsByClassName("select-selected");
+        xl = x.length;
+        yl = y.length;
+        for (i = 0; i < yl; i++) {
+            if (elmnt == y[i]) {
+                arrNo.push(i)
+            } else {
+                y[i].classList.remove("select-arrow-active");
+            }
+        }
+        for (i = 0; i < xl; i++) {
+            if (arrNo.indexOf(i)) {
+                x[i].classList.add("select-hide");
+            }
+        }
+    }
+    /*if the user clicks anywhere outside the select box,
+    then close all select boxes:*/
+    document.addEventListener("click", closeAllSelect);
+</script>

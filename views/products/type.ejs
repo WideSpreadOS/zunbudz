@@ -1,0 +1,87 @@
+<style>
+    .go-back-button {
+        margin-bottom: 30px;
+    }
+</style>
+
+
+<div class="filter-portrait">
+    <%- include('../partials/filters/products.ejs'); %>
+</div>
+<div class="filter-landscape">
+    <%- include('../partials/filters/products-landscape.ejs'); %>
+</div>
+
+<div class="page-title">
+    <h1>
+        <%= page %>
+    </h1>
+
+
+</div>
+<div class="go-back-button">
+    <a href="/products"><i class="fas fa-long-arrow-alt-left"></i> Back to All Products</a>
+</div>
+
+<div class="item-card-container">
+    <% if(products.length===0   && product.raffle_only != true) { %>
+        <p style="margin-bottom: 30px;">Sorry, we couldn't find any products.</p>
+
+        <% } else { %>
+            <% products.forEach(function(product) { %>
+                <% if (product.raffle_only === true) { %>
+                    <span style="display: none;"></span>
+                <% } else { %>
+                <div class="item-card">
+
+                    <div class="item-card-body">
+                        <div class="item-card-data">
+                            <div class="item-card-data-header">
+                                <h3>
+                                    <%= product.manufacturer.name %>
+                                </h3>
+                            </div>
+                            <div class="item-card-data-subheader">
+                                <h5>
+                                    <%= product.name %>
+                                </h5>
+                            </div>
+
+                        </div>
+
+                        <div class="item-card-main-image-container">
+                            <div class="item-card-main-image">
+                                <img src="<%= product.main_image %>" alt="">
+                            </div>
+                        </div>
+                    <div class="item-card-price">
+                        <div class="item-card-data-price">
+                            <span id="product_<%= product.id %>">$<%= product.price.base %></span>
+                        </div>
+
+                        <% if (product.in_stock <= 0) { %>
+                            <div style="color: red;" class="item-quantity">
+                                <p>Out of Stock:</p>
+                            </div>
+                        <% } else { %>
+                            
+                            <div style="color: lightskyblue;" class="item-quantity">
+                                <p>In Stock: <%= product.in_stock %></p>
+                            </div>
+                        <% } %>
+
+                        <div class="item-card-buttons">
+
+                            <div class="item-card-button">
+                                <a href="/products/manufacturer/<%= product.manufacturer.id %>/product/<%= product.id %>"><i class="far fa-eye"></i></a>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <% } %>
+                <% }) %>
+                    <% } %>
+
+</div>

@@ -1,0 +1,400 @@
+<style>
+    #colorBlack {
+        background: #000;
+    }
+
+    #colorWhite {
+        background: #fff;
+
+    }
+
+    #colorBlue {
+        background: #0000ff;
+
+    }
+
+    .color-filter {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .color-filter i {
+        text-align: center;
+        color: lightskyblue;
+        width: 100%;
+        font-size: 1.5rem;
+    }
+    .a_palette_color {
+        width: 30px;
+        height: 30px;
+    }
+    .input-group-color-selection {
+        margin-bottom: 20px;
+
+    }
+
+    .selected-color-container {
+        position: relative;
+    }
+
+    .toast-copied-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 16px;
+        margin: 0 auto;
+        padding: 12px;
+        margin-bottom: 10px;
+        text-align: center;
+        background-color: #ecf0f3;
+        box-shadow: inset 4px 4px 6px #cbced1, inset -4px -4px 6px #ffffff, 0 0 10px #fff;
+    }
+
+    .toast-copied {
+        border-radius: 16px;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff, inset 0 0 15px #fff;
+        width: 70%;
+        margin: 0 auto;
+        padding: 10px;
+        height: 70px;
+        margin-bottom: 20px;
+        text-align: center;
+        text-shadow: 0 0 2px #fff;
+
+    }
+
+    .toast-copied input {
+        display: none;
+    }
+
+    .palette {
+        width: 80%;
+        height: auto;
+        max-width: 80%;
+        background-color: #ecf0f3;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px;
+        border-radius: 16px;
+        margin: 0 auto;
+        overflow-x: scroll;
+
+        box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
+            -7px -7px 20px rgba(255, 255, 255, 1),
+            inset 0px 0px 4px rgba(255, 255, 255, 0.2),
+            inset 7px 7px 15px rgba(55, 84, 170, 0),
+            inset -7px -7px 20px rgba(255, 255, 255, 0),
+            0px 0px 4px rgba(255, 255, 255, 0) !important;
+    }
+
+    .a_palette_color {
+        width: 20px;
+        height: 20px;
+        background: red;
+        display: inline-block;
+        margin: 14px;
+        border-radius: 5%;
+        box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
+            -7px -7px 20px rgba(255, 255, 255, 1),
+            inset 0px 0px 4px rgba(255, 255, 255, 0.2),
+            inset 7px 7px 15px rgba(55, 84, 170, 0),
+            inset -7px -7px 20px rgba(255, 255, 255, 0),
+            0px 0px 4px rgba(255, 255, 255, 0) !important;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+
+    .color-link:nth-child(20n + 1) > a > .a_palette_color {
+        background-color: #FFFAFA;
+    }
+
+    .color-link:nth-child(20n + 2) > a > .a_palette_color {
+        background-color: #D3D3D3;
+    }
+
+    .color-link:nth-child(20n + 3) > a > .a_palette_color {
+        background-color: #696969;
+    }
+
+    .color-link:nth-child(20n + 4) > a > .a_palette_color {
+        background-color: #000000;
+    }
+
+    .color-link:nth-child(20n + 5) > a > .a_palette_color {
+        background-color: #000080;
+    }
+
+    .color-link:nth-child(20n + 6) > a > .a_palette_color {
+        background-color: #87CEFA;
+    }
+
+    .color-link:nth-child(20n + 7) > a > .a_palette_color {
+        background-color: #DDA0DD;
+    }
+
+    .color-link:nth-child(20n + 8) > a > .a_palette_color {
+        background-color: #9400D3;
+    }
+
+    .color-link:nth-child(20n + 9) > a > .a_palette_color {
+        background-color: #FF1493;
+    }
+
+    .color-link:nth-child(20n + 10) > a > .a_palette_color {
+        background-color: #FFB6C1;
+    }
+
+    .color-link:nth-child(20n + 11) > a > .a_palette_color {
+        background-color: #DC143C;
+    }
+
+    .color-link:nth-child(20n + 12) > a > .a_palette_color {
+        background-color: #FF4500;
+    }
+
+    .color-link:nth-child(20n + 13) > a > .a_palette_color {
+        background-color: #FFA500;
+    }
+
+    .color-link:nth-child(20n + 14) > a > .a_palette_color {
+        background-color: #FFA07A;
+    }
+
+    .color-link:nth-child(20n + 15) > a > .a_palette_color {
+        background-color: #FFFF00;
+    }
+
+    .color-link:nth-child(20n + 16) > a > .a_palette_color {
+        background-color: #2d3436;
+        background-color: #D2691E;
+    }
+
+    .color-link:nth-child(20n + 17) > a > .a_palette_color {
+        background-color: #8B4513;
+    }
+
+    .color-link:nth-child(20n + 18) > a > .a_palette_color {
+        background-color: #FFD700;
+    }
+
+    .color-link:nth-child(20n + 19) > a > .a_palette_color {
+        background-color: #6B8E23;
+    }
+
+    .color-link:nth-child(20n + 20) > a > .a_palette_color {
+        background-color: #98FB98;
+    }
+
+
+    .active {
+        border-bottom: none;
+    }
+    .product-filter-header {
+    }
+    .collapse-buttons {
+        position: relative;
+        width: 95%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+    .collapse-buttons > span {
+            display: absolute;
+            bottom: 5px;
+            right: 5px;
+            padding: 5px;
+        }
+        .collapse-buttons > span > i {
+            color: lightskyblue;
+            font-size: 1.3rem;
+ 
+        
+    }
+    .openFilter {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .closeFilter {
+        display: none;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        }
+
+       .filter-container {
+            display: none;
+            
+        }
+</style>
+<div class="product-filter-container">
+    <div class="collapsible-filter">
+        <div class="collapse-buttons">
+            <div class="product-filter-header">
+                <h5>Filter Products</h5>
+            </div>
+            <span onclick="closeFilter()"><i class="fas fa-angle-double-up closeFilter"></i></span>
+            <span onclick="openFilter()"><i class="fas fa-angle-double-down openFilter"></i></span>
+        </div>
+    </div>
+    <div class="filter-container">
+        <div class="filter-options-header">
+            <h6>Product Type</h6>
+        </div>
+        <div class="filter-options">
+            <div class="filter-option"><a href="/admin/products/type/Sneaker">Sneakers</a></div>
+            <div class="filter-option"><a href="/admin/products/type/Outerwear">Outerwear</a></div>
+            <div class="filter-option"><a href="/admin/products/type/T-Shirt">T-Shirts</a></div>
+            <div class="filter-option"><a href="/admin/products/type/Accessory">Accessories</a></div>
+        </div>
+        <div class="filter-options-header">
+            <h6>Manufacturer</h6>
+        </div>
+        <div class="filter-options">
+            <% companies.forEach(function(manufacturer) { %>
+                <div class="filter-option"><a href="/admin/products/manufacturer/<%= manufacturer.id %>">
+                        <%= manufacturer.name %>
+                    </a></div>
+                <% }) %>
+        </div>
+
+        <div class="filter-options-header">
+            <h6>Color</h6>
+        </div>
+        <div class="color-filter">
+            <i class="fas fa-arrows-alt-h"></i>
+            <div class="palette">
+                <div class="color-link">
+                    <a href="/admin/products/color/fffafa">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/d3d3d3">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/696969">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/000000">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/000080">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/87cefa">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/ddA0dd">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/9400d3">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/ff1493">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/ffb6c1">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/dc143c">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/ff4500">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/ffa500">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/ffa07a">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/ffff00">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/d2691e">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/884513">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/ffD700">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/6B8e23">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+                <div class="color-link">
+                    <a href="/admin/products/color/98fb98">
+                        <div class="a_palette_color"></div>
+                    </a>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+    function openFilter() {
+        document.querySelector('.filter-container').style.display = "block";
+        document.querySelector('.openFilter').style.display = "none"
+        document.querySelector('.closeFilter').style.display = "block"
+    }
+    function closeFilter() {
+        document.querySelector('.filter-container').style.display = "none";
+        document.querySelector('.closeFilter').style.display = "none"
+        document.querySelector('.openFilter').style.display = "block"
+    }
+
+</script>

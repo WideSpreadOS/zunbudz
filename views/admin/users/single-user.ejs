@@ -1,0 +1,171 @@
+<style>
+    .page-title h5 {
+        font-family: 'Rock Salt', cursive;
+        font-size: 1rem;
+        color: lightskyblue;
+    }
+    .user-list-container {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user-container {
+        background: #ecf0f3;
+        width: 80%;
+        margin-bottom: 20px;
+        padding: 5px;
+        border-radius: 8px;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+    }
+
+    .user-container p {
+        font-size: 1.2rem;
+        padding: 8px;
+    }
+
+    .user-container a {
+        padding: 8px;
+        text-decoration: none;
+        color: lightskyblue;
+        margin-bottom: 10px;
+    }
+
+    .user-container-button {
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 20px;
+        text-align: center;
+        margin-bottom: 10px;
+        background: #ecf0f3;
+        border-radius: 6px;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+    }
+
+    .user-container-button button {
+        width: 100%;
+        outline: none;
+        border: none;
+        border-radius: 6px;
+    }
+
+    .user-container-button a {
+        width: 100%;
+    }
+
+        .address-container {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+        border-radius: 8px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+
+    }
+    .address {
+        padding: 8px;
+    }
+    .address p {
+
+    }
+    .special-instructions-container {
+        padding: 8px;
+    }
+    .special-instructions-container h6 {
+        font-family: 'Rock Salt', cursive;
+        font-size: 1rem;
+        color: lightskyblue;
+    }
+    .special-instructions-container p {
+        width: 80%; 
+        margin: 0 auto;
+    }
+
+
+
+@media screen and (orientation : landscape) {
+    #walkthrough {
+        display: none;
+    }
+}
+</style>
+
+
+
+<%- include('../../partials/menus/admin-nav.ejs'); %>
+<div class="admin-container">
+    <div class="page-title">
+        <h1>
+            <%= page %>
+        </h1>
+    </div>
+
+
+    <div class="user-list-container">
+            <div class="user-container">
+                <p>
+                    <%= user.fname %>
+                        <%= user.lname %>
+                </p>
+                <a href="mailto:<%= user.email %>">
+                    <%= user.email %>
+                </a>
+
+            </div>
+    </div>
+
+<div class="page-title">
+    <h5>
+        Addresses
+    </h5>
+</div>
+
+
+    <div class="user-addresses-container">
+        <% if (userAddresses.length === 0) { %>
+            <p style="text-align: center;">No addresses added yet.</p>
+        <% } else { %>
+        <% userAddresses.forEach(function(address) { %>
+            <div class="address-container">
+                <div class="address">
+                    <p><%= address.street %></p>
+                    <% if (address.building_number=='' ) { %>
+                        <span style="display: none;"></span>
+                    <% } else { %>
+                        <p>Building: <%= address.building_number %>
+                        </p>
+                    <% } %>
+                    <% if (address.apartment_number=='' ) { %>
+                        <span style="display: none;"></span>
+                    <% } else { %>
+                        <p>Apartment: <%= address.apartment_number %>
+                        </p>
+                    <% } %>
+                    <p><%= address.city %>, <%= address.state %></p>
+                    <p><%= address.zip %></p>
+                    <p><%= address.country %></p>
+                </div>
+                <div class="special-instructions-container">
+                <h6>Special Instructions:</h6>
+                <% if (address.special_instructions == '') { %>
+                    <p>No Instructions</p>
+                <% } else { %>
+                    <p><%= address.special_instructions %></p>
+                <% } %>
+            </div>
+            </div>
+        <% }) %>
+
+        <% } %>
+
+    </div>
+
+
+</div>
+
+

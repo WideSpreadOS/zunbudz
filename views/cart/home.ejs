@@ -1,0 +1,213 @@
+<style>
+    .user-cart-container {
+        width: 80%;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+        border-radius: 8px;
+        margin: 0 auto;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 20px;
+    }
+    .cart-item {
+        width: 80%;
+        background: #ecf0f3;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+        border-radius: 8px;
+        padding: 10px;  
+        margin-bottom: 20px;   
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .cart-image {
+        width: 20%;
+        
+    }
+    .cart-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+    }
+
+    .cart-item-data {
+        width: 70%;
+        padding: 5px;
+    }
+    .cart-item-actions {
+    }
+    .edit-quantity {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .item-quantity-buttons {
+        text-align: center;
+        width: 50%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .item-quantity-button {
+    }
+    .item-quantity-button a {
+        text-decoration: none;
+        color: lightskyblue;
+        font-weight: bolder;
+        font-size: 2rem;
+    }
+    .cart-item-data h6 {
+        font-size: 1.2rem;
+        color: lightskyblue;
+        margin-bottom: 10px;
+    }
+    .remove-item {
+        margin-top: 10px;
+        text-align: right;
+    }
+    .remove-item a {
+        color: red;
+        text-decoration: none;
+        padding: 10px;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    .cart-total-items {
+        padding-top: 20px;
+        width: 90%;
+    }
+
+    .cart-pricing-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        margin-top: 10px;
+    }
+    .total-price {
+        font-size: 1.3rem;
+    }
+    .continue-shopping-button {
+
+    }
+
+    .checkout-container {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 30px;    
+        margin-bottom: 30px;    
+    }
+
+    .checkout-container a {
+        background: #ecf0f3;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+        border-radius: 8px;
+        color: green;
+        font-family: 'Rock Salt', cursive;
+        font-size: 0.8rem;
+        border: none;
+        outline: none;
+        padding: 15px;
+        width: 35%;
+        text-decoration: none;
+        
+    }
+</style>
+
+<div class="page-title">
+    <h1>
+        Current Cart
+    </h1>
+</div>
+
+
+<% if (!products) { %>
+    <p style="text-align: center;">Your cart is empty.</p>
+    <a style="color: lightskyblue; text-decoration: none; text-align: center; font-size: 1.5rem; margin-top: 20px;" href="/products">Continue Shopping</a>
+<% } else { %>
+<div class="user-cart-container">
+    <% products.forEach(function(item) { %>
+        <% if (item.qty <= 0) { %>
+            <span style="display: none;"></span>
+        <% } else { %>
+
+
+        <div class="cart-item">
+            <div class="cart-image">
+                <img src="<%= item.image %>" alt="">
+            </div>
+            <div class="cart-item-data">
+                <h6><%= item.name %></h6>
+                <p>$<%= item.price %>.00</p>
+                <p>Size: <%= item.size %></p>
+
+                <div class="cart-item-actions">
+                    <div class="edit-quantity">
+                        <span>Quantity: <%= item.qty %></span>
+                        <div class="item-quantity-buttons">
+                            <span class="item-quantity-button"><a href="/cart/reduce/<%= item.item_id %>"> - </a></span>
+                            <% if (item.in_stock <= 0) { %>
+                                <span><i style="color: red; font-size: 1.2rem" class="fas fa-times-circle"></i></span>
+                            <% } else { %>
+                                <span class="item-quantity-button"><a href="/cart/add/<%= item.item_id %>/<%= item.size %>"> + </a></span>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="remove-item">
+                        <a href="/cart/remove/<%= item.item_id %>">Remove Item</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <% } %>
+    <% }) %>
+    <div class="cart-total-items">
+        <% if (totalQty <= 0) { %>
+            <p style="text-align: center;">Your cart is empty.</p>
+            <p style="text-align: center; margin-bottom: 30px; margin-top: 30px;"><a style="color: lightskyblue; text-decoration: none; font-size: 1.3rem;" href="/products">Continue Shopping</a></p>
+        <% } else { %>
+            <p>Total Items: <%= totalQty %></p>
+
+
+<div class="cart-pricing-container">
+
+    <div class="total-price">
+        <p>Total Price: $<%= totalPrice %>.00</p>
+    </div>
+</div>
+    <div class="icon-container">
+        <i class="fab fa-cc-visa"></i>
+        <i class="fab fa-cc-amex"></i>
+        <i class="fab fa-cc-discover"></i>
+        <i class="fab fa-cc-mastercard"></i>
+        <i class="fab fa-google-pay"></i>
+        <i class="fab fa-cc-apple-pay"></i>
+    </div>
+
+    
+    <div class="checkout-container">
+        <a style="color: lightskyblue;" href="/products">Browse</a>
+        <a href="/cart/checkout">Checkout</a>
+</div>
+
+        <% } %>
+            </div>
+            </div>
+
+<% } %>

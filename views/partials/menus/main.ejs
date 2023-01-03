@@ -1,0 +1,440 @@
+    <style>
+        #mainMenu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            height: 100%;
+            padding-top: 50px;
+            background: #ecf0f3;
+            backdrop-filter: blur(4px);
+        }
+        #searchForm {
+            width: 100%;
+            margin-bottom: 30px;
+            margin-top: 30px;
+        }
+        #searchForm form {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #searchForm input {
+            width: 80%;
+            padding: 5px;
+            background: #ecf0f3;
+            box-shadow: -4px -4px 6px #cbced1, 4px 4px 6px #ffffff;
+            border-radius: 6px;
+        }
+        
+        #searchForm input::placeholder {
+            color: lightskyblue;
+        }
+
+        #searchForm button {
+            width: 15%;
+            padding: 5px;
+            border: none;
+            outline: none;
+            color: lightskyblue;
+            font-size: 1.2rem;
+            background: #ecf0f3;
+            box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+            border-radius: 6px;
+        }
+        .main-menu-item {
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 16px;
+            text-align: center;
+            background: #ecf0f3;
+            box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+            border-radius: 8px;
+        }
+        .menu-item-caret {
+            width: 100%;
+            text-align: center;
+        }
+        .menu-item-caret p {
+            width: 90%;
+        }
+        .menu-item-caret span {
+            width: 8%;
+        }
+        .menu-item-caret p {
+            width: fit-content;
+        }
+        .product-menu-item {
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 16px;
+            text-align: center;
+            background: #ecf0f3;
+            box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+            border-radius: 8px;
+        }
+        
+        .sneaker-menu-item {
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 16px;
+            text-align: center;
+            background: #ecf0f3;
+            box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+            border-radius: 8px;
+        }
+        
+        #productMenu {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-evenly;
+            min-height: fit-content;   
+            padding-top: 120px;
+        }
+
+    #productMenu span {
+        color: rgba(135, 206, 250, 0.25);
+        width: 50px;
+        height: 30px;
+
+    }
+
+    #productMenu i {
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.25);
+        color: lightskyblue;
+        font-size: 1.3rem;
+    }
+    .fade {
+        transition: ease-in opacity 2s;
+    }
+
+    .overlay2 {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 99960;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        overflow-x: hidden;
+        transition: 0.5s;
+        background: #ecf0f3;
+    }
+
+    .overlay2-content {
+        position: relative;
+        top: 25%;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .overlay2 p {
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-family: 'Rock Salt', cursive;
+        color: lightskyblue;
+        text-shadow: 0 0 5px rgba(127, 198, 241, 0.5);
+        display: block;
+        transition: ease-in 0.5s;
+        
+    }
+    .overlay2 a {
+        padding: 5px;
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-family: 'Rock Salt', cursive;
+        color: lightskyblue;
+        text-shadow: 0 0 5px rgba(127, 198, 241, 0.5);
+        display: block;
+        transition: ease-in 0.5s;
+    }
+
+    .overlay2 a:hover,
+    .overlay2 a:focus {
+        color: rgba(0, 0, 0, 0.5);
+        text-shadow: 0 0 8px rgba(135, 206, 250, 0.75);
+        transition: ease-in 0.5s;
+    }
+
+    .overlay2 .closeproductbtn {
+        position: absolute;
+        top: 45px;
+        right: 55px;
+        font-size: 2rem;
+        padding: 8px;
+        font-size: 2.2rem;
+        z-index: 99961;
+        color: lightskyblue;
+    }
+        
+        #sneakerMenu {
+         min-height: 100vh;   
+         padding-top: 120px;
+        }
+
+    #sneakerMenu span {
+        color: rgba(135, 206, 250, 0.25);
+        width: 50px;
+        height: 30px;
+
+    }
+
+    #sneakerMenu i {
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.25);
+        color: lightskyblue;
+        font-size: 1.3rem;
+    }
+    .fade {
+        transition: ease-in opacity 2s;
+    }
+
+    .overlay3 {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 99960;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        overflow-x: hidden;
+        transition: 0.5s;
+        background: #ecf0f3;
+    }
+
+    .overlay3-content {
+        position: relative;
+        top: 25%;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .overlay3 p {
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-family: 'Rock Salt', cursive;
+        color: lightskyblue;
+        text-shadow: 0 0 5px rgba(127, 198, 241, 0.5);
+        display: block;
+        transition: ease-in 0.5s;
+
+    }
+    .overlay3 a {
+        padding: 5px;
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-family: 'Rock Salt', cursive;
+        color: lightskyblue;
+        text-shadow: 0 0 5px rgba(127, 198, 241, 0.5);
+        display: block;
+        transition: ease-in 0.5s;
+    }
+
+    .overlay3 a:hover,
+    .overlay3 a:focus {
+        color: rgba(0, 0, 0, 0.5);
+        text-shadow: 0 0 8px rgba(135, 206, 250, 0.75);
+        transition: ease-in 0.5s;
+    }
+
+    .overlay3 .closesneakerbtn {
+        position: absolute;
+        top: 45px;
+        right: 55px;
+        font-size: 2rem;
+        padding: 8px;
+        font-size: 2.2rem;
+        z-index: 99965;
+        color: lightskyblue;
+    }
+
+
+
+
+    .user-menu-buttons {
+        min-width: 100%;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-evenly;
+
+    }
+    .user-menu-buttons a {
+        font-size: 1rem;
+    }
+@media screen and (orientation : landscape) {
+            #mainMenu {
+                padding-top: 0;
+                padding-bottom: 70px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+            }
+    
+            #productMenu {
+                padding-bottom: 50px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                width: 100%;
+                min-height:fit-content;
+            }
+            
+            #sneakerMenu {
+                min-height: fit-content;
+                padding-bottom: 50px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+            #searchForm form {
+                width: 75%;
+            }
+            .main-menu-item {
+                border-radius: 6px;
+                width: 40%;
+                max-width: 40%;
+            }
+            .user-menu-buttons {
+                min-width: 100%;
+                margin-top: 20px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                justify-content: space-evenly;
+                position: absolute;
+                bottom: 10px;
+            }
+            .user-menu-buttons a {
+                font-size: 1rem;
+            }
+            .overlay .closebtn {
+                padding: 0;
+                top: 5px;
+            }
+            .overlay a {
+                padding: 0;
+            }
+            .overlay2 .closeproductbtn {
+                top: 0;
+                right: 60px;
+            }
+            .overlay3 .closesneakerbtn {
+                top: 0;
+                right: 60px;
+            }
+    
+        }
+    </style>
+
+    <div id="mainMenu">
+        <div id="searchForm">
+            <form action="/search" method="post">
+                <input type="search" name="query_term" placeholder="Search...">
+                <button type="submit">Go</button>
+            </form>
+        </div>
+
+        <div class="main-menu-item"><a href="/">Home</a></div>
+        <div class="main-menu-item"><p>Products <span onclick="openProductsNav()"><i id="openProduct" class="fas fa-caret-right"></i></span></p></div>
+        <div class="main-menu-item"><a href="/about">Our Mission</a></div>
+        <div class="main-menu-item"><a href="/contact">Contact Us</a></div>
+
+
+        <div class="user-menu-buttons">
+                <% if (!user) { %>
+                    <a href="/user/login"><i style="font-size: 1.5rem;" class="fas fa-sign-in"></i></a>
+                    <% } else { %>
+                    <a href="/user/logout"><i style="font-size: 1.5rem;" class="fas fa-sign-out"></i></a>
+                    <a href="/user/dashboard"><i style="font-size: 1.5rem;" class="far fa-user-circle"></i></a>
+                    <% if (user.admin === true) { %>
+                        <a href="/admin"><i style="font-size: 1.5rem;" class="fas fa-user-shield"></i></a>
+                    <% } else { %>
+                        <span style="display: none;"></span>
+                    <% } %>
+                <% } %>
+
+                <a href="/cart/shopping-cart"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </div>
+
+
+
+    <div id="productNav" class="overlay2">
+        <a href="javascript:void(0)" class="closeproductbtn" onclick="closeProductNav()"><i class="fas fa-caret-left"></i></a>
+        <div id="productMenu">
+            <div class="main-menu-item"><a href="/products/">All Products</a></div>
+            <div class="main-menu-item">
+                    <p>Sneakers <span onclick="openSneakersNav()"><i id="openSneaker" class="fas fa-caret-right"></i></span></p>
+            </div>
+            <div class="main-menu-item"><a href="/products/type/Outerwear">Outerwear</a></div>
+            <div class="main-menu-item"><a href="/products/type/T-Shirt">T-Shirts</a></div>
+            <div class="main-menu-item"><a href="/products/type/Accessory">Accessories</a></div>
+
+            <div class="menu-break-line" style="display: block; width: 100%;">
+                
+                <hr>
+            </div>
+
+            <% companies.forEach(function(company) { %>
+                <div class="main-menu-item"><a href="/products/manufacturer/<%= company.id %>"><%= company.name %></a></div>
+                
+            <% }) %>
+
+        </div>
+    </div>
+
+
+    <div id="sneakerNav" class="overlay3">
+        <a href="javascript:void(0)" class="closesneakerbtn" onclick="closeSneakerNav()"><i class="fas fa-caret-left"></i></a>
+        <div id="sneakerMenu">
+            <div class="main-menu-item"><a href="/products/type/Sneaker">All Sneakers</a></div>
+            <div class="main-menu-item"><a href="/products/manufacturer/61eb4af3b5efcf5a381be153/type/Sneaker">Nike</a></div>
+            <div class="main-menu-item"><a href="/products/manufacturer/61eb4dd93929ce5a6038e9d6/type/Sneaker">Jordan</a></div>
+            <div class="main-menu-item"><a href="/products/manufacturer/61eb4e5f3929ce5a6038e9dc/type/Sneaker">Adidas</a></div>
+            <div class="main-menu-item"><a href="/products/manufacturer/61eb4ebd3929ce5a6038e9e0/type/Sneaker">Gucci</a></div>
+            <div class="main-menu-item"><a href="/products/manufacturer/61eb4f303929ce5a6038e9e3/type/Sneaker">Reebok</a></div>
+            <div class="main-menu-item"><a href="/products/manufacturer/61eb4fdd3929ce5a6038e9ea/type/Sneaker">Puma</a></div>
+            <div class="main-menu-item"><a href="/products/manufacturer/61eb503e3929ce5a6038e9ed/type/Sneaker">Converse</a></div>
+            <div class="main-menu-item"><a href="/products/manufacturer/61eb50983929ce5a6038e9f0/type/Sneaker">New Balance</a></div>
+            <div class="main-menu-item"><a href="/products/manufacturer/61eb51353929ce5a6038e9f3/type/Sneaker">Louis Vuitton</a></div>
+        </div>
+    </div>
+    
+    
+    
+    <script>
+        function openProductsNav() {
+            document.getElementById("productNav").style.width = "100%";
+            document.getElementById("openProduct").style.opacity = 0;
+            let oldMenu = document.getElementById("rootNav").removeChild[0];
+        }
+        
+        function closeProductNav() {
+            document.getElementById("productNav").style.width = "0%";
+            document.getElementById("openProduct").style.opacity = 1;
+        }
+
+        
+        function openSneakersNav() {
+            document.getElementById("sneakerNav").style.width = "100%";
+            document.getElementById("openSneaker").style.opacity = 0;
+        }
+        
+        function closeSneakerNav() {
+            document.getElementById("sneakerNav").style.width = "0%";
+            document.getElementById("openSneaker").style.opacity = 1;
+        }
+
+        
+    </script>

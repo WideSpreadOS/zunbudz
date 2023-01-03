@@ -1,0 +1,83 @@
+<style>
+    .admin-nav-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-start;
+        overflow-x: scroll;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100vw;
+        min-height: none;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+    }
+    .admin-nav-item {
+        width: fit-content;
+        min-width: 150px;
+        text-align: center;
+        border-right: solid 1px lightskyblue;
+        padding: 0;
+    }
+    .admin-nav-item:last-of-type {
+        border-right: none;
+    }
+    .admin-nav-item a {
+        text-decoration: none;
+        text-align: center;
+        color: lightskyblue;
+        font-size: 1.2rem;
+    }
+
+@media screen and (orientation : landscape) {
+    .admin-nav-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-start;
+        overflow-x: hidden;
+        width: 20vw;
+        min-height: 100vh;
+        padding-top: 60px;
+        padding-bottom: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+    }
+    .admin-nav-item {
+        width: fit-content;
+        min-width: none;
+        text-align: left;
+        border-right: none;
+        padding: 5px;
+    }
+    .admin-nav-item:last-of-type {
+        border-right: none;
+    }
+    .admin-nav-item a {
+        text-decoration: none;
+        text-align: center;
+        color: lightskyblue;
+        font-size: 1.2rem;
+    }
+
+}
+</style>
+
+<div class="admin-nav-container">
+    <div class="admin-nav-item"><a href="/admin/">Dashboard</a></div>
+    <div class="admin-nav-item"><a href="/admin/invoices">Invoices</a></div>
+    <div class="admin-nav-item"><a href="/admin/site">Site</a></div>
+    <div class="admin-nav-item"><a href="/admin/products">Products</a></div>
+    <div class="admin-nav-item"><a href="/admin/manufacturers">Manufacturers</a></div>
+    <div class="admin-nav-item"><a href="/admin/users">Users</a></div>
+    <div class="admin-nav-item"><a href="/admin/raffle">Raffle</a></div>
+    <div class="admin-nav-item"><a href="/admin/admin-accounts">Your Accounts</a></div>
+    <div class="admin-nav-item"><a href="/admin/help">Help</a></div>
+</div>

@@ -1,0 +1,404 @@
+<style>
+
+    .input-form {
+        width: 90%;
+        margin-bottom: 60px;
+    }
+
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: #ecf0f3;
+  box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 8px;
+  font-family: 'Poiret One', cursive;
+}
+.select-selected:active {
+    background-color: #ecf0f3;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 40%;
+  right: 15%;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: lightskyblue transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent lightskyblue transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  padding: 8px 16px;
+  font-weight: lighter;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+/*style items (options):*/
+.select-items {
+    position: absolute;
+
+    background-color: #ecf0f3;
+    font-family: 'Poiret One', cursive;
+  box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+  top: 45px;
+  left: 5%;
+  right: 5%;
+  z-index: 99;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.select-items:first-of-type {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.select-items:last-of-type {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.same-as-selected {
+  background: lightskyblue;
+  border-radius: none;
+}
+.select-items div:hover, .same-as-selected {
+    background: lightskyblue;
+    color: #fff;
+    border-radius: 0;
+}
+
+.admin-table {
+    margin-bottom: 60px;
+}
+.admin-table td:nth-child(1), .admin-table td:nth-child(3), .admin-table td:nth-child(4) {
+    text-align: center;
+}
+.item-card-button {
+    margin: 0 auto;
+}
+.checkbox-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.checkbox-group label {
+    margin-right: 5px;
+}
+    input[type="checkbox"] {
+	appearance: none;
+	width: 30px;
+	height: 30px;
+	background-clip: content-box;
+	padding: 3px;
+    border-radius: 50%;
+    box-shadow: 4px 2px 4px 0px #d1d9e6, -4px -2px 8px 0px #fff;
+}
+
+
+input[type="checkbox"]:checked {
+    box-shadow: -4px -2px 4px 0px #d1d9e6, 4px 2px 8px 0px #fff;
+}
+
+@media screen and (orientation : landscape) {
+    #walkthrough {
+        display: none;
+    }
+}
+</style>
+<% if (user.admin===true) { %>
+
+
+<%- include('../../partials/menus/admin-nav.ejs'); %>
+
+
+<div class="admin-container">
+<div class="page-title">
+    <h1>
+        <%= page %>
+    </h1>
+</div>
+
+
+
+<div class="input-form" id="shoeForm">
+    <div class="input-form-title">
+        <h5>Add New Product</h5>
+    </div>
+    <form action="/admin/products/add" method="post">
+        <div class="custom-select">
+            <select name="manufacturer" id="manufacturer" required>
+                <option value="" selected disabled hidden>Manufacturer (Required)</option>
+                <% companies.forEach(function(manufacturer) { %>
+                    <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="input-group">
+            <input type="text" name="name" placeholder="Name of Product (Required)" required>
+        </div>
+        <div class="input-group">
+            <textarea name="description" placeholder="Description"></textarea>
+        </div>
+        <div class="input-group">
+            <input type="text" name="sku" placeholder="SKU #">
+        </div>
+        <div class="input-group">
+            <input type="url" name="main_image" placeholder="Main Image URL">
+        </div>
+        <div class="input-group">
+            <input type="url" name="images" placeholder="Other Image URL">
+        </div>
+        <div class="input-group">
+            <input type="url" name="images" placeholder="Other Image URL">
+        </div>
+        <div class="input-group">
+            <input type="url" name="images" placeholder="Other Image URL">
+        </div>
+        <div class="custom-select">
+            <select name="product_type" id="productType" required>
+                <option value="" selected disabled hidden>Product Type</option>
+                <option value="Sneaker">Sneaker</option>
+                <option value="Outerwear">Outerwear</option>
+                <option value="T-Shirt">T-Shirt</option>
+                <option value="Accessory">Accessory</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <input type="url" name="url" placeholder="Products Webpage Direct URL">
+        </div>
+
+        <div class="checkbox-group" style="margin-bottom: 20px;">
+            <label for="graphics">Graphics on Product?</label>
+            <input type="checkbox" name="graphics" id="graphics" value="true">
+        </div>
+
+        <div class="gender-selection">
+            <div class="checkbox-group">
+                <label for="male">Mens</label>
+                <input type="checkbox" name="gender" id="male" value="mens">
+            </div>
+            <div class="checkbox-group">
+                <label for="female">Womens</label>
+                <input type="checkbox" name="gender" id="female" value="womens">
+            </div>
+        </div>
+
+        <label for="available_sizes" style="margin-bottom: 10px;">Available Sizes</label>
+        <div class="input-available-sizes">
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+        </div>
+        <div class="colors">
+            <%- include('../../partials/forms/color-selection.ejs'); %>
+
+        </div>
+        <div class="input-group">
+            <input type="number" name="price.base" placeholder="Price (Required)">
+        </div>
+        <div class="input-group">
+            <input type="number" name="in_stock" placeholder="How many are in current inventory?">
+        </div>
+        <div class="input-group">
+            <input type="number" name="reorder_alert" placeholder="Lowest quantity until reorder">
+        </div>
+
+        <div class="checkbox-group" style="margin-bottom: 20px;">
+            <label for="raffle">Is this Product for Raffle Only?</label>
+            <input type="checkbox" name="raffle_only" id="raffle" value="true">
+        </div>
+
+        <button type="submit">Add Product</button>
+    </form>
+</div>
+
+
+
+<%- include('../../partials/filters/admin-products.ejs'); %>
+
+<div class="admin-table">
+    <div class="admin-table-header">
+        <h3>All Products</h3>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Item</th>
+                <th>Details</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% products.forEach(function(product) { %>
+                <tr>
+                    <td>
+
+                            <% if (!product.main_image) { %>
+                                    <img style="filter: drop-shadow(0 0 2px lightskyblue);width: 75px; border-radius: 8px; opacity: 0.75;" src="https://th.bing.com/th/id/R.b9f8fb5b4ae645af922016c1fef19a9e?rik=n6ijNdvUdInMAg&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fdownload_546302.png&ehk=esufhR2EMnshhANfFAucbBI2jDIqTIjS20AfIBENF9M%3d&risl=&pid=ImgRaw&r=0" />
+                            <% } else { %>
+                                <img class="admin-table-image" src="<%= product.main_image %>" />
+                            <% } %>
+                    </td>
+                    <td>
+                            <p style="font-size: 1.1rem; color: lightskyblue;">
+                                <%= product.manufacturer.name %>
+                            </p>
+
+                            <p>
+                            <%= product.name %>
+                        </p>
+                    </td>
+                    <td>
+                        <div class="item-card-button"><a href="/admin/products/details/<%= product.id %>"><i class="far fa-eye"></i></a></div>
+                    </td>
+                    <td>
+                        <div class="item-card-button"><a href="/admin/products/edit/<%= product.id %>"><i class="far fa-edit"></i></a></div>
+                    </td>
+                </tr>
+
+                <% }) %>
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+
+
+
+<script>
+    var x, i, j, l, ll, selElmnt, a, b, c;
+    /*look for any elements with the class "custom-select":*/
+    x = document.getElementsByClassName("custom-select");
+    l = x.length;
+    for (i = 0; i < l; i++) {
+        selElmnt = x[i].getElementsByTagName("select")[0];
+        ll = selElmnt.length;
+        /*for each element, create a new DIV that will act as the selected item:*/
+        a = document.createElement("DIV");
+        a.setAttribute("class", "select-selected");
+        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+        x[i].appendChild(a);
+        /*for each element, create a new DIV that will contain the option list:*/
+        b = document.createElement("DIV");
+        b.setAttribute("class", "select-items select-hide");
+        for (j = 1; j < ll; j++) {
+            /*for each option in the original select element,
+            create a new DIV that will act as an option item:*/
+            c = document.createElement("DIV");
+            c.innerHTML = selElmnt.options[j].innerHTML;
+            c.addEventListener("click", function (e) {
+                /*when an item is clicked, update the original select box,
+                and the selected item:*/
+                var y, i, k, s, h, sl, yl;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                sl = s.length;
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < sl; i++) {
+                    if (s.options[i].innerHTML == this.innerHTML) {
+                        s.selectedIndex = i;
+                        h.innerHTML = this.innerHTML;
+                        y = this.parentNode.getElementsByClassName("same-as-selected");
+                        yl = y.length;
+                        for (k = 0; k < yl; k++) {
+                            y[k].removeAttribute("class");
+                        }
+                        this.setAttribute("class", "same-as-selected");
+                        break;
+                    }
+                }
+                h.click();
+            });
+            b.appendChild(c);
+        }
+        x[i].appendChild(b);
+        a.addEventListener("click", function (e) {
+            /*when the select box is clicked, close any other select boxes,
+            and open/close the current select box:*/
+            e.stopPropagation();
+            closeAllSelect(this);
+            this.nextSibling.classList.toggle("select-hide");
+            this.classList.toggle("select-arrow-active");
+        });
+    }
+    function closeAllSelect(elmnt) {
+        /*a function that will close all select boxes in the document,
+        except the current select box:*/
+        var x, y, i, xl, yl, arrNo = [];
+        x = document.getElementsByClassName("select-items");
+        y = document.getElementsByClassName("select-selected");
+        xl = x.length;
+        yl = y.length;
+        for (i = 0; i < yl; i++) {
+            if (elmnt == y[i]) {
+                arrNo.push(i)
+            } else {
+                y[i].classList.remove("select-arrow-active");
+            }
+        }
+        for (i = 0; i < xl; i++) {
+            if (arrNo.indexOf(i)) {
+                x[i].classList.add("select-hide");
+            }
+        }
+    }
+    /*if the user clicks anywhere outside the select box,
+    then close all select boxes:*/
+    document.addEventListener("click", closeAllSelect);
+</script>
+
+
+
+    
+<% } else { %>
+    <%- include('../../partials/pages/404.ejs'); %>
+    
+<% } %>

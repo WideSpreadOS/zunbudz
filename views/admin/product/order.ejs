@@ -1,0 +1,259 @@
+<style>
+    .page-title h2 {
+        font-family: 'Rock Salt', cursive;
+        color: #888;
+        font-size: 1.2rem;
+        
+    }
+    .input-form {
+        width: 90%;
+        margin-bottom: 60px;
+        margin-top: 30px;
+    }
+    /*the container must be positioned relative:*/
+    .custom-select {
+        position: relative;
+        font-family: Arial;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .custom-select select {
+        display: none;
+        /*hide original SELECT element:*/
+    }
+
+    .select-selected {
+        background-color: #ecf0f3;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+        width: 70%;
+        margin: 0 auto;
+        border-radius: 8px;
+        font-family: 'Poiret One', cursive;
+    }
+
+    /*style the arrow inside the select element:*/
+    .select-selected:after {
+        position: absolute;
+        content: "";
+        top: 40%;
+        right: 15%;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-color: lightskyblue transparent transparent transparent;
+    }
+
+    /*point the arrow upwards when the select box is open (active):*/
+    .select-selected.select-arrow-active:after {
+        border-color: transparent transparent lightskyblue transparent;
+        top: 7px;
+    }
+
+    /*style the items (options), including the selected item:*/
+    .select-items div,
+    .select-selected {
+        padding: 8px 16px;
+        font-weight: lighter;
+        cursor: pointer;
+        user-select: none;
+    }
+
+
+    /*style items (options):*/
+    .select-items {
+        position: absolute;
+        background-color: #ecf0f3;
+        box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
+        top: 45px;
+        left: 5%;
+        right: 5%;
+        z-index: 99;
+        border-radius: 8px;
+        overflow: hidden;
+        font-family: 'Poiret One', cursive;
+    }
+
+    .select-items:first-of-type {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .select-items:last-of-type {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    /*hide the items when the select box is closed:*/
+    .select-hide {
+        display: none;
+    }
+
+    .same-as-selected {
+        background: lightskyblue;
+        border-radius: none;
+    }
+
+    .select-items div:hover,
+    .same-as-selected {
+        background: lightskyblue;
+        color: #fff;
+        border-radius: 0;
+    }
+
+    .admin-table {
+        margin-bottom: 60px;
+    }
+
+    .admin-table td:nth-child(1),
+    .admin-table td:nth-child(3),
+    .admin-table td:nth-child(4) {
+        text-align: center;
+    }
+
+    .item-card-button {
+        margin: 0 auto;
+    }
+
+    /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  transition: ease-in 1s;
+}
+
+/* Modal Content */
+.modal-content {
+    margin: auto;
+    position: relative;
+}
+.modal-options {
+    background: #ecf0f3;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+/* The Close Button */
+.close {
+  font-family: 'Rock Salt', cursive;
+  font-size: 1.2rem;
+  color: lightskyblue;
+  background: #ecf0f3;
+}
+
+.close:hover,
+.close:focus {
+  color: #888;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.product-update {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+.product-update h5 {
+    font-size: 1.5rem;
+    color: lightskyblue;
+    margin-bottom: 10px;
+}
+.product-update p {
+    margin-bottom: 20px;
+    padding: 8px;
+}
+.product-update form {
+        box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+        padding: 12px;
+    border-radius: 16px;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}
+
+.product-update input {
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+    background: #ecf0f3;
+    box-shadow: -4px -4px 4px 0px #d1d9e6, 4px 4px 4px 0px #fff;
+}
+.product-update input::placeholder {
+    color: lightskyblue;
+}
+.product-update button {
+    box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
+    border-radius: 8px;
+    padding: 5px;
+    margin-left: 20px;
+}
+@media screen and (orientation : landscape) {
+    #walkthrough {
+        display: none;
+    }
+}
+</style>
+<% if (user.admin===true) { %>
+
+
+<%- include('../../partials/menus/admin-nav.ejs'); %>
+
+<div class="admin-container">
+    <div class="page-title">
+        <h2>
+            <%= product.name %>
+        </h2>
+    </div>
+
+    <div class="go-back-button">
+        <a href="/admin/products/details/<%= product.id %>"><i class="far fa-eye"></i> View Item</a>
+    </div>
+
+
+    <div class="product-data">
+        <div class="product-data-section">
+            <p>In Stock: <%= product.in_stock %></p>
+            <p>Reorder At: <%= product.reorder_alert %></p>
+            <p>SKU: <%= product.sku %></p>
+        </div>
+        <div class="product-data-section">
+            <p><a target="_blank" href="<%= product.url %>">Go To Site</a></p>
+        </div>
+    </div>
+
+
+    <div class="product-update">
+        <h5>Update Product After Reorder</h5>
+        <p>(Do not include the current inventory. Quantity of reorder will be calculated into the current inventory automatically)</p>
+        <form action="/admin/products/order/<%= product.id %>?_method=PATCH" method="post">
+            <input type="number" name="ordered_qty" placeholder="Total Number Ordered">
+            <button type="submit">Update Inventory</button>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+
+
+    
+<% } else { %>
+    <%- include('../../partials/pages/404.ejs'); %>
+    
+<% } %>
