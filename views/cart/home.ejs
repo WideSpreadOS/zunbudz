@@ -60,13 +60,13 @@
     }
     .item-quantity-button a {
         text-decoration: none;
-        color: lightskyblue;
+        color: rgba(235, 89, 57, 1);
         font-weight: bolder;
         font-size: 2rem;
     }
     .cart-item-data h6 {
         font-size: 1.2rem;
-        color: lightskyblue;
+        color: rgba(235, 89, 57, 1);
         margin-bottom: 10px;
     }
     .remove-item {
@@ -117,7 +117,7 @@
         box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
         border-radius: 8px;
         color: green;
-        font-family: 'Rock Salt', cursive;
+        font-family: 'Roboto', sans-serif;
         font-size: 0.8rem;
         border: none;
         outline: none;
@@ -137,7 +137,7 @@
 
 <% if (!products) { %>
     <p style="text-align: center;">Your cart is empty.</p>
-    <a style="color: lightskyblue; text-decoration: none; text-align: center; font-size: 1.5rem; margin-top: 20px;" href="/products">Continue Shopping</a>
+    <a style="color: rgba(235, 89, 57, 1); text-decoration: none; text-align: center; font-size: 1.5rem; margin-top: 20px;" href="/products">Continue Shopping</a>
 <% } else { %>
 <div class="user-cart-container">
     <% products.forEach(function(item) { %>
@@ -180,7 +180,7 @@
     <div class="cart-total-items">
         <% if (totalQty <= 0) { %>
             <p style="text-align: center;">Your cart is empty.</p>
-            <p style="text-align: center; margin-bottom: 30px; margin-top: 30px;"><a style="color: lightskyblue; text-decoration: none; font-size: 1.3rem;" href="/products">Continue Shopping</a></p>
+            <p style="text-align: center; margin-bottom: 30px; margin-top: 30px;"><a style="color: rgba(235, 89, 57, 1); text-decoration: none; font-size: 1.3rem;" href="/products">Continue Shopping</a></p>
         <% } else { %>
             <p>Total Items: <%= totalQty %></p>
 
@@ -202,7 +202,7 @@
 
     
     <div class="checkout-container">
-        <a style="color: lightskyblue;" href="/products">Browse</a>
+        <a style="color: rgba(235, 89, 57, 1);" href="/products">Browse</a>
         <a href="/cart/checkout">Checkout</a>
 </div>
 

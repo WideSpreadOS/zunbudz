@@ -33,7 +33,7 @@
 
     #coreMenu i {
         text-shadow: 0 0 2px rgba(255, 255, 255, 0.25);
-        color: lightskyblue;
+        color: rgba(6, 96, 44, 1);
         font-size: 1.3rem;
     }
  
@@ -62,8 +62,8 @@
     .overlay p {
         text-decoration: none;
         font-size: 1.5rem;
-        font-family: 'Rock Salt', cursive;
-        color: lightskyblue;
+        font-family: 'Roboto', sans-serif;
+        color: rgba(6, 96, 44, 1);
         text-shadow: 0 0 5px rgba(127, 198, 241, 0.5);
         display: block;
         transition: ease-in 0.5s;
@@ -73,8 +73,8 @@
         padding: 5px;
         text-decoration: none;
         font-size: 1.5rem;
-        font-family: 'Rock Salt', cursive;
-        color: lightskyblue;
+        font-family: 'Roboto', sans-serif;
+        color: rgba(6, 96, 44, 1);
         text-shadow: 0 0 5px rgba(127, 198, 241, 0.5);
         display: block;
         transition: ease-in 0.5s;
@@ -89,7 +89,7 @@
 
     .overlay .closebtn {
         position: absolute;
-        top: 45px;
+        top: 60px;
         right: 20px;
         font-size: 2rem;
         z-index: 99940;
@@ -115,7 +115,7 @@
 
 
 <div id="rootNav" class="overlay">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fas fa-times"></i></a>
     <div id="mainMenu">
         <%- include('./menus/main'); %>
     </div>

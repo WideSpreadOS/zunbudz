@@ -4,7 +4,7 @@ GLOBAL FONTS
 
 font-family: 'Darker Grotesque', sans-serif;
 font-family: 'Poiret One', cursive;
-font-family: 'Rock Salt', cursive;
+font-family: 'Roboto', sans-serif;
 font-family: 'Shadows Into Light', cursive;
 font-family: 'Shadows Into Light Two', cursive;
 */
@@ -68,7 +68,7 @@ input, textarea, button {
     .error h1 {
         font-size: 1.3rem;
         font-weight: bold;
-        color: lightskyblue;
+        color: rgba(235, 89, 57, 1);
     }
     
     .error-data {
@@ -91,7 +91,7 @@ input, textarea, button {
     
     .error-data-links a {
         text-decoration: none;
-        color: lightskyblue;
+        color: rgba(235, 89, 57, 1);
     
     }
 
@@ -113,13 +113,13 @@ input, textarea, button {
 .site-logo-big {
     max-width: 80vw;
     max-height: 300px;
-    margin-top: 30px;
+
     margin: 0 auto;
     text-align: center;
     background-color: #ecf0f3;
     box-shadow: -4px -4px 4px 0px #d1d9e6, 4px 4px 4px 0px #fff;
     border-radius: 50%;
-    padding: 10px;
+    padding: 30px;
     position: fixed;
     bottom: 10%;
     left: 50%;
@@ -153,6 +153,7 @@ input, textarea, button {
     max-height: 200px;
     padding: 15px;
     margin-bottom: 10px;
+    display: none;
 }
 .company-logo img {
     max-width: 100%;
@@ -178,13 +179,13 @@ input, textarea, button {
     padding: 10px;
 }
 .input-form-title h5 {
-    font-family: 'Rock Salt', cursive;
-    color: lightskyblue;
+    font-family: 'Roboto', sans-serif;
+    color: rgba(235, 89, 57, 1);
     font-size: 1.5rem;
 }
 .input-form-title h6 {
-    font-family: 'Rock Salt', cursive;
-    color: lightskyblue;
+    font-family: 'Roboto', sans-serif;
+    color: rgba(235, 89, 57, 1);
     font-size: 1.2rem;
 }
 .input-form form {
@@ -216,7 +217,7 @@ input, textarea, button {
     border-radius: 4px;
     font-family: 'Poiret One', cursive;
     font-size: 1rem;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     transition: ease-in 0.25s;
 }
 .input-group input:focus {
@@ -244,7 +245,7 @@ input, textarea, button {
     padding: 5px;
     border-radius: 4px;
     font-family: 'Poiret One', cursive;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     font-size: 1rem;
     transition: ease-in 0.25s;
     resize: none;
@@ -314,7 +315,7 @@ input, textarea, button {
     justify-content: center;
 }
 .fileUpload button {
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
 
 }
 #uploadFile {
@@ -325,7 +326,7 @@ input, textarea, button {
     border-radius: 6px;
     margin-right: 10px;
     font-family: 'Poiret One', cursive;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
 }
 #uploadFile::placeholder {
     font-family: 'Poiret One', cursive;
@@ -351,7 +352,7 @@ input, textarea, button {
     outline: none;
     border: none;
     width: 100%;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
 }
 .add-image {
     display: flex;
@@ -359,7 +360,7 @@ input, textarea, button {
     justify-content: center;
 }
 .add-image button {
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     font-family: 'Poiret One', cursive;
         background-color: #ecf0f3;
     box-shadow: 4px 4px 6px #d1d9e6, -4px -4px 6px #ffffff;
@@ -402,7 +403,7 @@ input, textarea, button {
     border-radius: 4px;
     font-family: 'Poiret One', cursive;
     font-size: 1rem;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     transition: ease-in 0.25s;
 }
 .input-size input:focus {
@@ -473,9 +474,9 @@ input, textarea, button {
     background: #ecf0f3;
     box-shadow: 4px 4px 4px 0px #d1d9e6, -4px -4px 4px 0px #fff;
     border-radius: 8px;
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Roboto', sans-serif;
     font-size: 1.2rem;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     text-shadow: 0 0 2px rgba(135, 206, 250, 0.5);
 }
 .input-form button:active {
@@ -484,7 +485,7 @@ input, textarea, button {
     padding: 8px;
     outline: none;
     border: none;
-    background: lightskyblue;
+    background: rgba(235, 89, 57, 1);
     box-shadow: -4px -4px 6px #d1d9e6, 4px 4px 6px #ffffff;
     border-radius: 8px;
     transition: ease-in-out 0.25s;
@@ -519,7 +520,7 @@ input, textarea, button {
 }
 .site-link-helper a {
     text-decoration: none;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     font-weight: bold;
 }
 
@@ -541,7 +542,7 @@ input, textarea, button {
     background: transparent;
     border: none;
     outline: none;
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Roboto', sans-serif;
     color: red;
     font-size: 1.2rem;
 }
@@ -573,9 +574,9 @@ input, textarea, button {
     right: 30px;
     font-size: 1.8rem;
     font-weight: bold;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     width: 100%;
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Roboto', sans-serif;
     position: absolute;
     z-index: 101;
     text-shadow: 0 0 4px #fff;
@@ -600,7 +601,7 @@ input, textarea, button {
 }
 .go-back-button a {
     text-decoration: none;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     font-size: 1.2rem;
 }    
 .go-back-button i {
@@ -609,7 +610,7 @@ input, textarea, button {
 
 .product-search-menu {
     max-width: 10vw;
-    background: lightskyblue;
+    background: rgba(235, 89, 57, 1);
     padding: 15px;
 
 }
@@ -618,11 +619,11 @@ input, textarea, button {
     margin-bottom: 30px;
 }
 .menu-break-line hr {
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     width: 80%;
     margin: 0 auto;
     display: block;
-    border: solid 2px lightskyblue;
+    border: solid 2px rgba(235, 89, 57, 1);
     border-radius: 50%;
     box-shadow: 0 0 3px 1px rgba(135, 206, 250, 0.5);
 }
@@ -633,9 +634,9 @@ input, textarea, button {
     margin-bottom: 20px;
 }
 .page-title h1 {
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Roboto', sans-serif;
     font-size: 1.8rem;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
 }
 
 
@@ -770,9 +771,9 @@ input, textarea, button {
     padding: 8px;
 }
 .item-size span {
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Roboto', sans-serif;
     
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     font-size: 1.1rem;
 }
 .item-card-body {
@@ -789,8 +790,8 @@ input, textarea, button {
 .item-card-data {
     padding: 5px;
     margin-bottom: 15px;
-    background: rgba(135, 206, 250, 0.5);
-    background-image: linear-gradient(to right, rgba(135, 206, 250, 0.5),rgba(255,0,0,0),rgba(255,0,0,0), rgba(135, 206, 250, 0.5));
+    background: rgba(235, 89, 57, 0.25);
+    background-image: linear-gradient(to right, rgba(235, 89, 57, 0.5),rgba(235, 89, 57, 0.2),rgba(235, 89, 57, 0.2), rgba(235, 89, 57, 0.5));
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
     border-bottom: outset 2px rgba(135, 206, 250, 0.5);
@@ -811,7 +812,7 @@ input, textarea, button {
     color: #fff;
     padding-left: 8px;
     padding-top: 8px;
-    text-shadow: 0 0 1px lightskyblue;
+    text-shadow: 0 0 1px rgba(235, 89, 57, 1);
 }
 .item-card-data-header-logo {
     max-width: 40px;
@@ -884,8 +885,8 @@ input, textarea, button {
 .item-card-button a {
     text-decoration: none;
 
-    font-family: 'Rock Salt', cursive;
-    color: lightskyblue;
+    font-family: 'Roboto', sans-serif;
+    color: rgba(235, 89, 57, 1);
     font-size: 1rem;
 }
 
@@ -894,8 +895,8 @@ input, textarea, button {
     border: none;
     max-width: 50px;
     overflow: hidden;
-    font-family: 'Rock Salt', cursive;
-    color: lightskyblue;
+    font-family: 'Roboto', sans-serif;
+    color: rgba(235, 89, 57, 1);
     font-size: 1rem;
     background: transparent;
 }
@@ -921,8 +922,8 @@ input, textarea, button {
 
 .product-filter-header h5{
     text-align: center;
-    font-family: 'Rock Salt', cursive;
-    color: lightskyblue;
+    font-family: 'Roboto', sans-serif;
+    color: rgba(235, 89, 57, 1);
 }
 
 
@@ -961,9 +962,9 @@ input, textarea, button {
 }
 .admin-table-header h3 {
     text-align: center;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     font-size: 1.2rem;
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Roboto', sans-serif;
 }
 .admin-table table {
     border-collapse: collapse;
@@ -1022,7 +1023,7 @@ input, textarea, button {
     padding: 5px;
 }
 .product-data a {
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     text-decoration: none;
 
 }
@@ -1248,7 +1249,7 @@ input, textarea, button {
         width: 7in;
         margin: 0 auto;
         padding-top: 20px;
-        border-bottom: solid 2px lightskyblue;
+        border-bottom: solid 2px rgba(235, 89, 57, 1);
     }
 
     .reciept-header-text {
@@ -1276,7 +1277,7 @@ input, textarea, button {
         margin-top: 30px;
         padding-bottom: 20px;
         width: 80%;
-        border-bottom: solid 2px lightskyblue;
+        border-bottom: solid 2px rgba(235, 89, 57, 1);
     }
     .order-placed-container {
         width: 50%;
@@ -1391,7 +1392,7 @@ input, textarea, button {
 
     .print-label a {
         text-decoration: none;
-        color: lightskyblue;
+        color: rgba(235, 89, 57, 1);
     }
 
     .order-placed {
@@ -1407,7 +1408,7 @@ input, textarea, button {
 
     .order-placed a {
         font-size: 3rem;
-        color: lightskyblue;
+        color: rgba(235, 89, 57, 1);
         text-decoration: none;
         padding: 20px;
     }
@@ -1415,7 +1416,7 @@ input, textarea, button {
 #walkthrough {
     text-align: center;
     font-size: 1.3rem;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
 }
 .openButton {
 
@@ -1425,12 +1426,12 @@ input, textarea, button {
 .introjs-tooltip {
     position: relative;
     width: 90%;
-    background: lightskyblue;
+    background: rgba(235, 89, 57, 1);
     margin-left: 5%;
     border-radius: 8px;
 }
 .introjs-arrow.top {
-    border-bottom-color: lightskyblue;
+    border-bottom-color: rgba(235, 89, 57, 1);
 }
 
 .introjs-tooltip-title {
@@ -1456,7 +1457,7 @@ input, textarea, button {
 }
 .introjs-button {
     border-radius: 8px;
-    background: lightskyblue;
+    background: rgba(235, 89, 57, 1);
     outline: none;
     border: none;
     color: #fff;
@@ -1465,7 +1466,7 @@ input, textarea, button {
 }
 .introjs-button:focus {
     border-radius: 8px;
-    background: lightskyblue;
+    background: rgba(235, 89, 57, 1);
     outline: none;
     border: none;
     color: #fff;
@@ -1480,7 +1481,7 @@ input, textarea, button {
 #walkthrough {
     text-align: center;
     font-size: 1.3rem;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
 }
 .openButton {
 
@@ -1490,12 +1491,12 @@ input, textarea, button {
 .introjs-tooltip {
     position: relative;
     width: 90%;
-    background: lightskyblue;
+    background: rgba(235, 89, 57, 1);
     margin-left: 5%;
     border-radius: 8px;
 }
 .introjs-arrow.top {
-    border-bottom-color: lightskyblue;
+    border-bottom-color: rgba(235, 89, 57, 1);
 }
 
 .introjs-tooltip-title {
@@ -1521,7 +1522,7 @@ input, textarea, button {
 }
 .introjs-button {
     border-radius: 8px;
-    background: lightskyblue;
+    background: rgba(235, 89, 57, 1);
     outline: none;
     border: none;
     color: #fff;
@@ -1530,7 +1531,7 @@ input, textarea, button {
 }
 .introjs-button:focus {
     border-radius: 8px;
-    background: lightskyblue;
+    background: rgba(235, 89, 57, 1);
     outline: none;
     border: none;
     color: #fff;
@@ -1556,12 +1557,14 @@ input, textarea, button {
         display: block;
     }
     .landscape-nav-logo-under {
+        display: none;
         position: fixed;
         top: 0;
         left: 50%;
         transform: translateX(-50%);
         width: 100px;
-        height: 100px;
+        height: 55px;
+        
         padding: 5px;
         border-radius: 50%;
         background: #ecf0f3;
@@ -1578,11 +1581,14 @@ input, textarea, button {
         left: 50%;
         transform: translateX(-50%);
         width: 100px;
-        height: 100px;
+        height: 55px;
         padding: 5px;
         border-radius: 50%;
         background: #ecf0f3;
         z-index: 11000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .landscape-nav-logo img {
         z-index: 999999;
@@ -1626,8 +1632,8 @@ input, textarea, button {
         border-radius: 8px;
     }
     .filter-options-header h6 {
-        color: lightskyblue;
-        font-family: 'Rock Salt', cursive;
+        color: rgba(235, 89, 57, 1);
+        font-family: 'Roboto', sans-serif;
         font-weight: lighter;
     }
     

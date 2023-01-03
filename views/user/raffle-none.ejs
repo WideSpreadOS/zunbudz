@@ -72,7 +72,7 @@
     .raffle-item-claim a {
         color: lightskyblue;
         text-decoration: none;
-        font-family: 'Rock Salt', cursive;
+        font-family: 'Roboto', sans-serif;
         font-size: 1.2rem;
     }
     @media screen and (orientation : landscape) {
@@ -129,7 +129,7 @@
                     <h6>Prize</h6>
                     <p><%= raffle.raffle_product.manufacturer.name %></p>
                     <p><%= raffle.raffle_product.name %></p>
-                    <p>Worth: $<span style='color:red;text-decoration:line-through'><span style="color: #000"><%= raffle.raffle_product.price.base %></span></span> <span style="font-family: 'Rock Salt', cursive; color: lightskyblue;">FREE!</span></p>
+                    <p>Worth: $<span style='color:red;text-decoration:line-through'><span style="color: #000"><%= raffle.raffle_product.price.base %></span></span> <span style="font-family: 'Roboto', sans-serif; color: lightskyblue;">FREE!</span></p>
                     <img src="<%= raffle.raffle_product.main_image %>" alt="">
                 </div>
                 <div class="raffle-item-claim">
