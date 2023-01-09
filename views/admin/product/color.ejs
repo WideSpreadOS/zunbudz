@@ -36,13 +36,13 @@
                             <tr>
                                 <td>
                             <% if (!product.main_image) { %>
-                                    <img style="filter: drop-shadow(0 0 2px lightskyblue);width: 75px; border-radius: 8px; opacity: 0.75;" src="https://th.bing.com/th/id/R.b9f8fb5b4ae645af922016c1fef19a9e?rik=n6ijNdvUdInMAg&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fdownload_546302.png&ehk=esufhR2EMnshhANfFAucbBI2jDIqTIjS20AfIBENF9M%3d&risl=&pid=ImgRaw&r=0" />
+                                    <img style="filter: drop-shadow(0 0 2px rgba(235, 89, 57, 1));width: 75px; border-radius: 8px; opacity: 0.75;" src="https://th.bing.com/th/id/R.b9f8fb5b4ae645af922016c1fef19a9e?rik=n6ijNdvUdInMAg&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fdownload_546302.png&ehk=esufhR2EMnshhANfFAucbBI2jDIqTIjS20AfIBENF9M%3d&risl=&pid=ImgRaw&r=0" />
                             <% } else { %>
                                 <img class="admin-table-image" src="<%= product.main_image %>" />
                             <% } %>
                                 </td>
                                 <td>
-                                    <p style="font-size: 1.1rem; color: lightskyblue;">
+                                    <p style="font-size: 1.1rem; color: rgba(235, 89, 57, 1);">
                                         <%= product.manufacturer.name %>
                                     </p>
                                     <p>

@@ -14,7 +14,11 @@
 
 
 <div class="mission-statement-container">
-    <p><%= missionStatement.mission_statement %></p>
+    <% if (missionStatement) { %>
+        <p><%= missionStatement.mission_statement %></p>
+    <% } else { %>
+        <p>Nothing here yet...</p>
+    <% } %>
 </div>
 <div class="site-logo-big">
     <img src="/images/logo_1a1a1c.png" alt="">

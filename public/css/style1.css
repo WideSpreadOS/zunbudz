@@ -56,7 +56,9 @@ input, textarea, button {
     font-family: 'Poiret One', cursive;
     background: #ecf0f3;
 }
-
+h5 {
+    color: rgba(6, 96, 44, 1) !important;
+}
 
 /* 404 Page */
     .error {
@@ -221,7 +223,7 @@ input, textarea, button {
     transition: ease-in 0.25s;
 }
 .input-group input:focus {
-    background: rgba(135, 206, 250, 0.75);
+    background: rgba(235, 89, 57, 0.75);
     color: #fff;
     transition: ease-in 0.25s;
 }
@@ -252,7 +254,7 @@ input, textarea, button {
     height: 100px;
 }
 .input-group textarea:focus {
-    background: rgba(135, 206, 250, 0.75);
+    background: rgba(235, 89, 57, 0.75);
     color: #fff;
     transition: ease-in 0.25s;
 }
@@ -407,7 +409,7 @@ input, textarea, button {
     transition: ease-in 0.25s;
 }
 .input-size input:focus {
-    background: rgba(135, 206, 250, 0.75);
+    background: rgba(235, 89, 57, 0.75);
     color: #fff;
     transition: ease-in 0.25s;
 }
@@ -934,6 +936,8 @@ input, textarea, button {
 }
 .filter-options-header h6 {
     text-align: center;
+    color: rgba(235, 89, 57, 1);
+    font-size: 1.2rem;
 }
 .filter-options {
     display: flex;
@@ -1580,11 +1584,9 @@ input, textarea, button {
         top: 0;
         left: 50%;
         transform: translateX(-50%);
-        width: 100px;
+        width: 200px;
         height: 55px;
         padding: 5px;
-        border-radius: 50%;
-        background: #ecf0f3;
         z-index: 11000;
         display: flex;
         align-items: center;
@@ -1592,8 +1594,8 @@ input, textarea, button {
     }
     .landscape-nav-logo img {
         z-index: 999999;
-        width: 100%;
-        filter: drop-shadow(0 0 3px #000);
+        max-width: 100%;
+        max-height: 100%;
     }
     .page-container {
         flex-direction: row;

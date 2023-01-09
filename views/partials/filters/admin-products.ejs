@@ -22,7 +22,7 @@
     }
     .color-filter i {
         text-align: center;
-        color: lightskyblue;
+        color: rgba(235, 89, 57, 1);
         width: 100%;
         font-size: 1.5rem;
     }
@@ -214,7 +214,7 @@
             padding: 5px;
         }
         .collapse-buttons > span > i {
-            color: lightskyblue;
+            color: rgba(235, 89, 57, 1);
             font-size: 1.3rem;
  
         
@@ -253,12 +253,12 @@
         <div class="filter-options-header">
             <h6>Product Type</h6>
         </div>
-        <div class="filter-options">
-            <div class="filter-option"><a href="/admin/products/type/Sneaker">Sneakers</a></div>
-            <div class="filter-option"><a href="/admin/products/type/Outerwear">Outerwear</a></div>
-            <div class="filter-option"><a href="/admin/products/type/T-Shirt">T-Shirts</a></div>
-            <div class="filter-option"><a href="/admin/products/type/Accessory">Accessories</a></div>
-        </div>
+                <div class="filter-options">
+                    <div class="filter-option"><a href="/products/type/Flower">Flowers</a></div>
+                    <div class="filter-option"><a href="/products/type/Oil">Oil</a></div>
+                    <div class="filter-option"><a href="/products/type/Edible">Edibles</a></div>
+                    <div class="filter-option"><a href="/products/type/Other">Other</a></div>
+                </div>
         <div class="filter-options-header">
             <h6>Manufacturer</h6>
         </div>
@@ -270,10 +270,10 @@
                 <% }) %>
         </div>
 
-        <div class="filter-options-header">
+        <div class="filter-options-header" style="display: none;">
             <h6>Color</h6>
         </div>
-        <div class="color-filter">
+        <div class="color-filter" style="display: none;">
             <i class="fas fa-arrows-alt-h"></i>
             <div class="palette">
                 <div class="color-link">

@@ -41,12 +41,12 @@
         width: 0;
         height: 0;
         border: 6px solid transparent;
-        border-color: lightskyblue transparent transparent transparent;
+        border-color: rgba(235, 89, 57, 1) transparent transparent transparent;
     }
 
     /*point the arrow upwards when the select box is open (active):*/
     .select-selected.select-arrow-active:after {
-        border-color: transparent transparent lightskyblue transparent;
+        border-color: transparent transparent rgba(235, 89, 57, 1) transparent;
         top: 7px;
     }
 
@@ -90,13 +90,13 @@
     }
 
     .same-as-selected {
-        background: lightskyblue;
+        background: rgba(235, 89, 57, 1);
         border-radius: none;
     }
 
     .select-items div:hover,
     .same-as-selected {
-        background: lightskyblue;
+        background: rgba(235, 89, 57, 1);
         color: #fff;
         border-radius: 0;
     }
@@ -146,7 +146,7 @@
 .close {
   font-family: 'Roboto', sans-serif;
   font-size: 1.2rem;
-  color: lightskyblue;
+  color: rgba(235, 89, 57, 1);
   background: #ecf0f3;
 }
 
@@ -181,7 +181,7 @@
         <a href="/admin/products/details/<%= product.id %>"><i class="far fa-eye"></i> View Item</a>
     </div>
 
-    <div class="add-images">
+    <div class="add-images" style="display: none;">
         <form action="/upload-item-image/<%= product.id %>" method="post" enctype="multipart/form-data">
             <input type="file" name="item_image" id="">
             <button type="submit">Upload</button>
@@ -241,10 +241,10 @@
             <div class="custom-select">
                 <select name="product_type" id="productType">
                     <option value="<%= product.product_type %>"><%= product.product_type %></option>
-                    <option value="Sneaker">Sneaker</option>
-                    <option value="Outerwear">Outerwear</option>
-                    <option value="T-Shirt">T-Shirt</option>
-                    <option value="Accessory">Accessory</option>
+                    <option value="Flower">Flower</option>
+                    <option value="Oil">Oil</option>
+                    <option value="Edible">Edible</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
             <div class="input-group">
@@ -252,12 +252,12 @@
                 <input type="url" name="url" placeholder="Products Webpage Direct URL" value="<%= product.url %>">
             </div>
 
-            <div class="radio-group">
+            <div class="radio-group" style="display: none;">
                 <label for="graphics">Graphics on Product?</label>
                 <input type="checkbox" name="graphics" id="graphics" value="true">
             </div>
 
-            <div class="gender-selection">
+            <div class="gender-selection" style="display: none;">
 
                 <div class="checkbox-group">
                     <label for="male">Mens</label>
@@ -268,31 +268,21 @@
                     <input type="checkbox" name="gender" id="female" value="womens">
                 </div>
             </div>
-            <label for="available_sizes" style="margin-bottom: 10px;">Available Sizes</label>
+            <label for="available_sizes" style="margin-bottom: 10px;">Available Quantities</label>
             <div class="input-available-sizes">
-                
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[0] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[1] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[2] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[3] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[4] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[5] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[6] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[7] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[8] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[9] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[10] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[11] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[12] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[13] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[14] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[15] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[16] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[17] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[18] %>"></div>
-                <div class="input-size"><input type="text" name="available_sizes" placeholder="Size" value="<%= product.available_sizes[19] %>"></div>
+                <% product.available_sizes.forEach(function(size) { %>
+                    <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty." value="<%= size %>"></div>
+                <% }) %>
+                <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+                <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+                <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+                <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+                <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+                <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+                <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+                <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
             </div>
-            <div class="colors">
+            <div class="colors" style="display: none;">
                 <%- include('../../partials/forms/color-selection.ejs'); %>
             
             </div>
@@ -302,7 +292,7 @@
             </div>
             <div class="input-group">
                 <label for="price.discount">Discount</label>
-                <input type="number" name="price.discount" placeholder="Price" value="<%= product.price.base %>">
+                <input type="number" name="price.discount" placeholder="Discount" value="<%= product.price.discount %>">
             </div>
             <div class="input-group">
                 <label for="in_stock">In Stock</label>

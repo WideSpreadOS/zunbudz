@@ -38,12 +38,12 @@
   width: 0;
   height: 0;
   border: 6px solid transparent;
-  border-color: lightskyblue transparent transparent transparent;
+  border-color: rgba(235, 89, 57, 1) transparent transparent transparent;
 }
 
 /*point the arrow upwards when the select box is open (active):*/
 .select-selected.select-arrow-active:after {
-  border-color: transparent transparent lightskyblue transparent;
+  border-color: transparent transparent rgba(235, 89, 57, 1) transparent;
   top: 7px;
 }
 
@@ -86,11 +86,11 @@
 }
 
 .same-as-selected {
-  background: lightskyblue;
+  background: rgba(235, 89, 57, 1);
   border-radius: none;
 }
 .select-items div:hover, .same-as-selected {
-    background: lightskyblue;
+    background: rgba(235, 89, 57, 1);
     color: #fff;
     border-radius: 0;
 }
@@ -187,22 +187,22 @@ input[type="checkbox"]:checked {
         <div class="custom-select">
             <select name="product_type" id="productType" required>
                 <option value="" selected disabled hidden>Product Type</option>
-                <option value="Sneaker">Sneaker</option>
-                <option value="Outerwear">Outerwear</option>
-                <option value="T-Shirt">T-Shirt</option>
-                <option value="Accessory">Accessory</option>
+                <option value="Flower">Flower</option>
+                <option value="Oil">Oil</option>
+                <option value="Edible">Edible</option>
+                <option value="Other">Other</option>
             </select>
         </div>
         <div class="input-group">
-            <input type="url" name="url" placeholder="Products Webpage Direct URL">
+            <input type="url" name="url" placeholder="Products Direct URL (Not on Zunbudz.com)">
         </div>
 
-        <div class="checkbox-group" style="margin-bottom: 20px;">
+        <div class="checkbox-group" style="margin-bottom: 20px; display: none;">
             <label for="graphics">Graphics on Product?</label>
             <input type="checkbox" name="graphics" id="graphics" value="true">
         </div>
 
-        <div class="gender-selection">
+        <div class="gender-selection" style="display: none;">
             <div class="checkbox-group">
                 <label for="male">Mens</label>
                 <input type="checkbox" name="gender" id="male" value="mens">
@@ -213,30 +213,18 @@ input[type="checkbox"]:checked {
             </div>
         </div>
 
-        <label for="available_sizes" style="margin-bottom: 10px;">Available Sizes</label>
+        <label for="available_sizes" style="margin-bottom: 10px;">Available Quantities</label>
         <div class="input-available-sizes">
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
-            <div class="input-size"><input type="text" name="available_sizes" placeholder="Size"></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
+            <div class="input-size"><input type="text" name="available_sizes" placeholder="Qty."></div>
         </div>
-        <div class="colors">
+        <div class="colors" style="display: none;">
             <%- include('../../partials/forms/color-selection.ejs'); %>
 
         </div>
@@ -250,7 +238,7 @@ input[type="checkbox"]:checked {
             <input type="number" name="reorder_alert" placeholder="Lowest quantity until reorder">
         </div>
 
-        <div class="checkbox-group" style="margin-bottom: 20px;">
+        <div class="checkbox-group" style="margin-bottom: 20px; display: none;">
             <label for="raffle">Is this Product for Raffle Only?</label>
             <input type="checkbox" name="raffle_only" id="raffle" value="true">
         </div>
@@ -282,13 +270,13 @@ input[type="checkbox"]:checked {
                     <td>
 
                             <% if (!product.main_image) { %>
-                                    <img style="filter: drop-shadow(0 0 2px lightskyblue);width: 75px; border-radius: 8px; opacity: 0.75;" src="https://th.bing.com/th/id/R.b9f8fb5b4ae645af922016c1fef19a9e?rik=n6ijNdvUdInMAg&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fdownload_546302.png&ehk=esufhR2EMnshhANfFAucbBI2jDIqTIjS20AfIBENF9M%3d&risl=&pid=ImgRaw&r=0" />
+                                    <img style="filter: drop-shadow(0 0 2px rgba(235, 89, 57, 1));width: 75px; border-radius: 8px; opacity: 0.75;" src="https://th.bing.com/th/id/R.b9f8fb5b4ae645af922016c1fef19a9e?rik=n6ijNdvUdInMAg&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fdownload_546302.png&ehk=esufhR2EMnshhANfFAucbBI2jDIqTIjS20AfIBENF9M%3d&risl=&pid=ImgRaw&r=0" />
                             <% } else { %>
                                 <img class="admin-table-image" src="<%= product.main_image %>" />
                             <% } %>
                     </td>
                     <td>
-                            <p style="font-size: 1.1rem; color: lightskyblue;">
+                            <p style="font-size: 1.1rem; color: rgba(235, 89, 57, 1);">
                                 <%= product.manufacturer.name %>
                             </p>
 

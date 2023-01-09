@@ -18,7 +18,7 @@
         padding: 10px;
     }
     .go-to-order a {
-        color: lightskyblue;
+        color: rgba(235, 89, 57, 1);
         text-decoration: none;
     }
 
@@ -48,7 +48,7 @@
         <div class="all-orders-container">
 
             <% if (shippedOrders.length <=0) { %>
-                <p style="text-align: center;">No New Orders</p>
+                <p style="text-align: center;">No Shipped Orders</p>
                 <% } else { %>
             <% shippedOrders.forEach(function(order) { %>
                 <div class="order-container">

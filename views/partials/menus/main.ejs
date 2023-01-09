@@ -5,8 +5,8 @@
             align-items: center;
             justify-content: flex-start;
             width: 100%;
-            height: 100%;
-            padding-top: 50px;
+            height: calc(100% - 60px);
+            padding-top: 60px;
             background: #ecf0f3;
             backdrop-filter: blur(4px);
         }
@@ -41,7 +41,8 @@
             padding: 5px;
             border: none;
             outline: none;
-            color: rgba(6, 96, 44, 1);
+            color: rgba(235, 89, 57, 1);
+            font-weight: bold;
             font-size: 1.2rem;
             background: #ecf0f3;
             box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px #ffffff;
@@ -96,7 +97,7 @@
             align-items: center;
             justify-content: space-evenly;
             min-height: fit-content;   
-            padding-top: 120px;
+            /* padding-top: 150px; */
         }
 
     #productMenu span {
@@ -165,15 +166,18 @@
 
     .overlay2 .closeproductbtn {
         position: absolute;
-        top: 60px;
+        top: 75px;
         right: 55px;
         font-size: 2rem;
         padding: 8px;
         font-size: 2.2rem;
         z-index: 99961;
-        color: rgba(6, 96, 44, 1);
+        color: rgba(235, 89, 57, 1);
     }
-        
+.overlay2 #searchForm {
+    margin-top: 150px;
+}   
+
         #sneakerMenu {
          min-height: 100vh;   
          padding-top: 120px;
@@ -275,6 +279,7 @@
             #mainMenu {
                 padding-top: 0;
                 padding-bottom: 70px;
+                height: calc(100% - 70px);
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: space-evenly;
@@ -288,7 +293,9 @@
                 width: 100%;
                 min-height:fit-content;
             }
-            
+    .overlay2 #searchForm {
+        margin-top: 40px;
+    }
             #sneakerMenu {
                 min-height: fit-content;
                 padding-bottom: 50px;
@@ -347,7 +354,7 @@
         </div>
 
         <div class="main-menu-item"><a href="/">Home</a></div>
-        <div class="main-menu-item"><p>Products <span onclick="openProductsNav()"><i id="openProduct" class="fas fa-caret-right"></i></span></p></div>
+        <div class="main-menu-item"><span onclick="openProductsNav()"><p style="cursor: pointer;">Products <i id="openProduct" class="fas fa-caret-right" style="cursor: pointer;"></i></p></span></div>
         <div class="main-menu-item"><a href="/about">Our Mission</a></div>
         <div class="main-menu-item"><a href="/contact">Contact Us</a></div>
 
@@ -374,13 +381,17 @@
     <div id="productNav" class="overlay2">
         <a href="javascript:void(0)" class="closeproductbtn" onclick="closeProductNav()"><i class="fas fa-caret-left"></i></a>
         <div id="productMenu">
+        <div id="searchForm">
+            <form action="/search" method="post">
+                <input type="search" name="query_term" placeholder="Search...">
+                <button type="submit">Go</button>
+            </form>
+        </div>
             <div class="main-menu-item"><a href="/products/">All Products</a></div>
-            <div class="main-menu-item">
-                    <p>Sneakers <span onclick="openSneakersNav()"><i id="openSneaker" class="fas fa-caret-right"></i></span></p>
-            </div>
-            <div class="main-menu-item"><a href="/products/type/Outerwear">Outerwear</a></div>
-            <div class="main-menu-item"><a href="/products/type/T-Shirt">T-Shirts</a></div>
-            <div class="main-menu-item"><a href="/products/type/Accessory">Accessories</a></div>
+            <div class="main-menu-item"><a href="/products/type/Flower">Flower</a></div>
+            <div class="main-menu-item"><a href="/products/type/Oil">Oils</a></div>
+            <div class="main-menu-item"><a href="/products/type/Edible">Edibles</a></div>
+            <div class="main-menu-item"><a href="/products/type/Other">Other</a></div>
 
             <div class="menu-break-line" style="display: block; width: 100%;">
                 
@@ -396,20 +407,9 @@
     </div>
 
 
-    <div id="sneakerNav" class="overlay3">
+    <div id="sneakerNav" class="overlay3" style="display: none;">
         <a href="javascript:void(0)" class="closesneakerbtn" onclick="closeSneakerNav()"><i class="fas fa-caret-left"></i></a>
-        <div id="sneakerMenu">
-            <div class="main-menu-item"><a href="/products/type/Sneaker">All Sneakers</a></div>
-            <div class="main-menu-item"><a href="/products/manufacturer/61eb4af3b5efcf5a381be153/type/Sneaker">Nike</a></div>
-            <div class="main-menu-item"><a href="/products/manufacturer/61eb4dd93929ce5a6038e9d6/type/Sneaker">Jordan</a></div>
-            <div class="main-menu-item"><a href="/products/manufacturer/61eb4e5f3929ce5a6038e9dc/type/Sneaker">Adidas</a></div>
-            <div class="main-menu-item"><a href="/products/manufacturer/61eb4ebd3929ce5a6038e9e0/type/Sneaker">Gucci</a></div>
-            <div class="main-menu-item"><a href="/products/manufacturer/61eb4f303929ce5a6038e9e3/type/Sneaker">Reebok</a></div>
-            <div class="main-menu-item"><a href="/products/manufacturer/61eb4fdd3929ce5a6038e9ea/type/Sneaker">Puma</a></div>
-            <div class="main-menu-item"><a href="/products/manufacturer/61eb503e3929ce5a6038e9ed/type/Sneaker">Converse</a></div>
-            <div class="main-menu-item"><a href="/products/manufacturer/61eb50983929ce5a6038e9f0/type/Sneaker">New Balance</a></div>
-            <div class="main-menu-item"><a href="/products/manufacturer/61eb51353929ce5a6038e9f3/type/Sneaker">Louis Vuitton</a></div>
-        </div>
+
     </div>
     
     

@@ -44,7 +44,7 @@
 .user-container a {
     padding: 8px;
     text-decoration: none;
-    color: lightskyblue;
+    color: rgba(235, 89, 57, 1);
     margin-bottom: 10px;
 }
 
@@ -101,7 +101,7 @@
                             <a href="/admin/users/security-level/admin/<%= singleUser.id %>"><i style="color: red; font-size: 1.5rem;" class="fas fa-user-shield"></i></a>
                             <% } else { %>
                                 <% if (singleUser.id === '61ead601b09e2fb3e68d0f36') { %>
-                                    <a href="#"><i style="color: lightskyblue; font-size: 1.5rem;" class="fas fa-user-shield"></i></a>
+                                    <a href="#"><i style="color: rgba(235, 89, 57, 1); font-size: 1.5rem;" class="fas fa-user-shield"></i></a>
                                 <% } else { %>
                                     <a href="/admin/users/security-level/none/<%= singleUser.id %>"><i style="color: green; font-size: 1.5rem;" class="fas fa-user-shield"></i></a>
                                 <% } %>

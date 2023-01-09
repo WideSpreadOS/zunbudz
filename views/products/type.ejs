@@ -24,14 +24,14 @@
 </div>
 
 <div class="item-card-container">
-    <% if(products.length===0   && product.raffle_only != true) { %>
+    <% if(products.length===0   && products.raffle_only != true || !products) { %>
         <p style="margin-bottom: 30px;">Sorry, we couldn't find any products.</p>
 
-        <% } else { %>
-            <% products.forEach(function(product) { %>
-                <% if (product.raffle_only === true) { %>
-                    <span style="display: none;"></span>
-                <% } else { %>
+    <% } else { %>
+        <% products.forEach(function(product) { %>
+            <% if (product.raffle_only === true) { %>
+                <span style="display: none;"></span>
+            <% } else { %>
                 <div class="item-card">
 
                     <div class="item-card-body">
@@ -65,7 +65,7 @@
                             </div>
                         <% } else { %>
                             
-                            <div style="color: lightskyblue;" class="item-quantity">
+                            <div style="color: rgba(235, 89, 57, 1);" class="item-quantity">
                                 <p>In Stock: <%= product.in_stock %></p>
                             </div>
                         <% } %>
@@ -80,8 +80,8 @@
                     </div>
                     </div>
                 </div>
-                <% } %>
-                <% }) %>
-                    <% } %>
+            <% } %>
+        <% }) %>
+    <% } %>
 
 </div>

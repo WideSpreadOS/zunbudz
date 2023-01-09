@@ -184,7 +184,7 @@
 
 </div>
 
-<div id="raffleContainer" class="raffle-overlay">
+<div id="raffleContainer" class="raffle-overlay" style="display: none;">
     <a href="javascript:void(0)" class="closebtn" onclick="closeRaffle()">&times;</a>
     <div id="currentRafflePrize" class="current-raffle-prize">
         <a href="/products/manufacturer/<%= currentRafflePrize.manufacturer.id %>/product/<%= currentRafflePrize.id %>">
@@ -213,7 +213,7 @@
     </div>
 
 </div>
-<div id="raffleHeader">
+<div id="raffleHeader" style="display: none;">
     <h2>Raffle</h2>
     <p>$<%= currentRaffle.ticket_price %>/ea</p>
     <span onclick="openRaffle()"><i id="openRaffle" class="fa-solid fa-caret-up"></i></span>
